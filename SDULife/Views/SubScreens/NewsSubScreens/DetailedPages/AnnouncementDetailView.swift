@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct AnnouncementDetailView: View {
+    
+    @GestureState private var dragOffset = CGSize.zero
     @State private var isLiked: Bool = false
     @Environment(\.presentationMode) var presentationMode
-    var announcement: Announcement = Announcement(id: 001, title: "KERMEZ", image: "", club: MockData.sampleClub, date: "25/10/2020")
+    var announcement: Announcement
     var body: some View {
         GeometryReader{ geom in
-            NavigationView{
             VStack(alignment:.leading){
                 
                 ScrollView{
                     VStack(alignment: .leading, spacing: 10){
                         
                         HStack{
-                            Text(announcement.date)
+                            Text(announcement.created_at)
                                 .font(.system(size: 10))
                                 .opacity(0.5)
                             Spacer()
@@ -28,12 +29,12 @@ struct AnnouncementDetailView: View {
                         Text(announcement.title)
                             .font(.system(size: 24))
                             .bold()
-                        Image(announcement.image.count==0 ? "no-image" : announcement.image )
+                        Image("no-image")
                             .resizable()
                             .scaledToFit()
                             .frame(width: geom.size.width-30, alignment: .center)
                         
-                        Text("Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news.")
+                        Text(announcement.description)
                             .font(.system(size: 15))
                             .opacity(0.8)
                         
@@ -53,21 +54,28 @@ struct AnnouncementDetailView: View {
                     }
                 }
                 .padding(.init(top: 0, leading: 17, bottom: 0, trailing: 17))
-                .navigationBarItems(leading: Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Image(systemName: "chevron.left")
-                }))
+//                .navigationBarItems(leading: Button(action: {
+//                    presentationMode.wrappedValue.dismiss()
+//                }, label: {
+//                    Image(systemName: "chevron.left")
+//                }))
                 .navigationBarTitle("Announcement", displayMode: .inline)
             }
             }
-        }
+        
+//        .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
+//             if(value.startLocation.x < 20 &&
+//                        value.translation.width > 100) {
+//                 self.presentationMode.wrappedValue.dismiss()
+//             }
+//        })
+//                 )
         
     }
 }
 
-struct AnnouncementDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        AnnouncementDetailView(announcement: Announcement(id: 001, title: "KERMEZ", image: "", club: MockData.sampleClub, date: "25/10/2020"))
-    }
-}
+//struct AnnouncementDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AnnouncementDetailView(announcement: Announcement(id: 001, title: "KERMEZ", image: "", club: MockData.sampleClub, date: "25/10/2020"))
+//    }
+//}

@@ -8,6 +8,7 @@
 import Foundation
 
 struct Founds: Decodable, Identifiable, Hashable {
+    
     var id: Int
     var user_id: Int
     var title: String
@@ -16,7 +17,18 @@ struct Founds: Decodable, Identifiable, Hashable {
     var created_at: String
     var updated_at: String
     var time: String
-    var images: [String]
+    var images: [Images]
+}
+
+
+struct Images: Codable, Hashable{
+    let path: String
+    let pivot: Pivot
+}
+
+struct Pivot:Codable, Hashable{
+    let found_id: Int
+    let image_id: Int
 }
 
 struct FoundsResponse: Decodable, Hashable {

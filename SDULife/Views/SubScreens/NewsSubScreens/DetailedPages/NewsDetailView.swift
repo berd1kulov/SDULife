@@ -8,20 +8,17 @@
 import SwiftUI
 
 struct NewsDetailView: View {
-    
     @State private var isLiked: Bool = false
     @Environment(\.presentationMode) var presentationMode
-    var news: News = News(id: 0001, title: "Hackathon for freshmans", image: "hackathon", date: "22/10/2020")
+    var news: News = News(id: 0001, author: "Some author", title: "Nauryz fest", body: "Some text", likes: 0, status: 1, created_at: "11/11/2011", updated_at: "11/11/2011", images: ["hackathon"])
     var body: some View {
         GeometryReader{ geom in
-            NavigationView{
             VStack(alignment:.leading){
-                
                 ScrollView{
                     VStack(alignment: .leading, spacing: 10){
                         
                         HStack{
-                            Text(news.date)
+                            Text(news.created_at)
                                 .font(.system(size: 10))
                                 .opacity(0.5)
                             Spacer()
@@ -29,12 +26,12 @@ struct NewsDetailView: View {
                         Text(news.title)
                             .font(.system(size: 24))
                             .bold()
-                        Image(news.image)
+                        Image("no-image")
                             .resizable()
                             .scaledToFit()
                             .frame(width: geom.size.width-30, alignment: .center)
                         
-                        Text("Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news. Some information. All about this news.")
+                        Text(news.body)
                             .font(.system(size: 15))
                             .opacity(0.8)
                         
@@ -54,16 +51,9 @@ struct NewsDetailView: View {
                     }
                 }
                 .padding(.init(top: 0, leading: 17, bottom: 0, trailing: 17))
-                .navigationBarItems(leading: Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Image(systemName: "chevron.left")
-                }))
                 .navigationBarTitle("News", displayMode: .inline)
             }
-            }
         }
-        
     }
 }
 

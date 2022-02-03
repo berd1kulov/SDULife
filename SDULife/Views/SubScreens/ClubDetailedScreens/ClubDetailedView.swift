@@ -10,7 +10,9 @@ import SDWebImageSwiftUI
 
 struct ClubDetailedView: View {
     
-    var club: Club = MockData.sampleClub
+    @StateObject var viewModel = ClubListViewModel()
+    @State var club: Club = MockData.sampleClub
+    let userID = UserDefaults.standard.string(forKey: "userID")
     var body: some View {
         ScrollView{
             VStack{
@@ -37,7 +39,7 @@ struct ClubDetailedView: View {
                     Text("")
                         .font(Font.custom("Poppins-SemiBold", size: 13))
                 }.opacity(0.7)
-                    
+                
                 HStack{
                     Text("Chat: ")
                         .font(Font.custom("Poppins-Regular", size: 13))
@@ -70,32 +72,78 @@ struct ClubDetailedView: View {
                     }
                 }
                 Divider()
+                VStack {
+                    Text(viewModel.joinMessage).font(.largeTitle)
+                    if(club.head_id == Int(userID ?? "0")){
+                        HStack{
+                            if(!club.is_member){
+                                Button(action: {
+                                    viewModel.selectedClub = club
+                                    viewModel.req_type = 1
+                                    viewModel.joinLeaveAcceptRequest()
+                                }, label: {
+                                    Text("Join")
+                                        .frame(width: 155, height: 50, alignment: .center)
+                                        .foregroundColor(.white)
+                                        .background(Color(red: 69/255, green: 7/255, blue: 73/255))
+                                })
+                            }else if(club.is_member){
+                                Button(action: {
+                                    viewModel.selectedClub = club
+                                    viewModel.req_type = 2
+                                    viewModel.joinLeaveAcceptRequest()
+    
+                                }, label: {
+                                    Text("Leave")
+                                        .frame(width: 155, height: 50, alignment: .center)
+                                        .foregroundColor(.white)
+                                        .background(Color(red: 69/255, green: 7/255, blue: 73/255))
+                                })
+                            }
+                            if(club.is_followed){
+                                Button(action: {}, label: {
+                                    Text("Unfollow")
+                                        .frame(width: 155, height: 50, alignment: .center)
+                                        .foregroundColor(.white)
+                                        .background(Color(red: 69/255, green: 7/255, blue: 73/255))
+                                })
+                            }else{
+                                Button(action: {}, label: {
+                                    Text("Follow")
+                                        .frame(width: 155, height: 50, alignment: .center)
+                                        .foregroundColor(.white)
+                                        .background(Color(red: 69/255, green: 7/255, blue: 73/255))
+                                })
+                            }
+                        }
+                        .padding()
+                    }else{
+                        NavigationLink(destination: {
+                            ClubRequestsView(club: club)
+                        }, label: {
+                            Text("Follow Request")
+                                .frame(width: 310, height: 50, alignment: .center)
+                                .foregroundColor(.white)
+                                .background(Color(red: 69/255, green: 7/255, blue: 73/255))
+                        })
+                            .padding()
+                    }
+//                    ForEach(0...10, id: \.self){_ in
+//                        ClubNewsCell()
+//                        Divider()
+//
+//                    }
+                }
                 
-                HStack{
-                    Button(action: {}, label: {
-                        Text("Join")
-                            .frame(width: 155, height: 50, alignment: .center)
-                            .foregroundColor(.white)
-                            .background(Color(red: 69/255, green: 7/255, blue: 73/255))
-                    })
-                    Button(action: {}, label: {
-                        Text("Follow")
-                            .frame(width: 155, height: 50, alignment: .center)
-                            .foregroundColor(.white)
-                            .background(Color(red: 69/255, green: 7/255, blue: 73/255))
-                    })
-                }
-                .padding()
-                ForEach(0...10, id: \.self){_ in
-                    ClubNewsCell()
-                    Divider()
-                        
-                }
-                    
             }
             .padding()
             
         }.navigationBarTitle("\(club.name)", displayMode: .inline)
+            .alert(item: $viewModel.alertItem) { alertItem in
+                Alert(title: alertItem.title,
+                      message: alertItem.message,
+                      dismissButton: alertItem.dismissButton)
+            }
     }
 }
 

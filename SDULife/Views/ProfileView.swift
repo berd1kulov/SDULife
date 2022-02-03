@@ -200,6 +200,7 @@ struct ProfileView: View {
                             Button(action: {
                                 withAnimation{
                                     UserDefaults.standard.removeObject(forKey: "token")
+                                    UserDefaults.standard.removeObject(forKey: "userID")
                                     isUserLoggedIn = false
                                 }
                                 

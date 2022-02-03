@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User:Decodable, Identifiable, Hashable {
+struct User: Codable, Identifiable, Hashable {
     let id: Int
     let name: String
     let surname: String
@@ -18,6 +18,12 @@ struct User:Decodable, Identifiable, Hashable {
     let email: String
 }
 
+
+struct RequestedUser: Codable, Identifiable, Equatable{
+    let id: Int
+    let name: String
+    let email: String
+}
 
 struct MockUserData{
     

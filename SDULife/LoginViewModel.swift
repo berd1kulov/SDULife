@@ -23,8 +23,9 @@ class LoginViewModel: ObservableObject {
             DispatchQueue.main.async {
                 isLoading = false
                 switch result {
-                case .success(let token):
-                    defaults.setValue(token, forKey: "token")
+                case .success(let loginResponse):
+                    defaults.setValue(loginResponse.token, forKey: "token")
+                    defaults.setValue(loginResponse.user?.id, forKey: "userID")
                     self.isAuthenticated = true
                     
                 case .failure(let error):

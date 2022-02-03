@@ -52,6 +52,8 @@
 		C09D20B727737CFC00E82EA7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D20B627737CFC00E82EA7 /* LoginViewModel.swift */; };
 		C09D20B92773A6D000E82EA7 /* FoundsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D20B82773A6D000E82EA7 /* FoundsViewModel.swift */; };
 		C09E5FA72752543B009FADAE /* RecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09E5FA62752543B009FADAE /* RecommendationView.swift */; };
+		C0B73AF627A85D68007BD411 /* AnnouncementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B73AF527A85D68007BD411 /* AnnouncementViewModel.swift */; };
+		C0B73AF827A865D3007BD411 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B73AF727A865D3007BD411 /* NewsViewModel.swift */; };
 		C0B7F6A0274FB26100B8418B /* DevelopmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B7F69F274FB26100B8418B /* DevelopmentView.swift */; };
 		C0B7F6A2274FB8DF00B8418B /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B7F6A1274FB8DF00B8418B /* NotificationView.swift */; };
 		C0B7F6A4274FBF8E00B8418B /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B7F6A3274FBF8E00B8418B /* NotificationCell.swift */; };
@@ -117,6 +119,8 @@
 		C09D20B627737CFC00E82EA7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C09D20B82773A6D000E82EA7 /* FoundsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundsViewModel.swift; sourceTree = "<group>"; };
 		C09E5FA62752543B009FADAE /* RecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationView.swift; sourceTree = "<group>"; };
+		C0B73AF527A85D68007BD411 /* AnnouncementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementViewModel.swift; sourceTree = "<group>"; };
+		C0B73AF727A865D3007BD411 /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		C0B7F69F274FB26100B8418B /* DevelopmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentView.swift; sourceTree = "<group>"; };
 		C0B7F6A1274FB8DF00B8418B /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		C0B7F6A3274FBF8E00B8418B /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
@@ -386,6 +390,8 @@
 			children = (
 				C0C9A27C2756604A0032F42D /* ClubListViewModel.swift */,
 				C09D20B82773A6D000E82EA7 /* FoundsViewModel.swift */,
+				C0B73AF527A85D68007BD411 /* AnnouncementViewModel.swift */,
+				C0B73AF727A865D3007BD411 /* NewsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -526,7 +532,9 @@
 				C0BCF0C927A4321C00DB1940 /* RecommendedCell.swift in Sources */,
 				C0872613274F89DD00B1FE93 /* ClubsCell.swift in Sources */,
 				C0B7F6A9274FC75000B8418B /* HeadStudentsListView.swift in Sources */,
+				C0B73AF827A865D3007BD411 /* NewsViewModel.swift in Sources */,
 				C0572DB7274228B800327EA4 /* Club.swift in Sources */,
+				C0B73AF627A85D68007BD411 /* AnnouncementViewModel.swift in Sources */,
 				C0C9A27927565F510032F42D /* Alert.swift in Sources */,
 				C0872618274F966900B1FE93 /* ClubNewsCell.swift in Sources */,
 				C0C9A26C27561F620032F42D /* NetworkManager.swift in Sources */,
@@ -681,6 +689,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SDULife/Preview Content\"";
@@ -702,6 +711,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbbakdaulet.SDULife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -714,6 +724,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SDULife/Preview Content\"";
@@ -735,6 +746,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bbbakdaulet.SDULife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

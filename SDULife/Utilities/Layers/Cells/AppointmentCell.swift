@@ -37,11 +37,12 @@ struct AppointmentCell: View {
             }.frame(width: 162.5)
             WebImage(url: URL(string: "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png"))
                 .resizable()
-                .frame(width: 162.5, height: 200, alignment: .center)
-                .scaledToFill()
+                .scaledToFit()
         }
+        .frame(height: 200)
         .border(Color.gray, width: 1)
         .cornerRadius(2)
+        .padding(.init(top: 0, leading: 26, bottom: 0, trailing: 26))
     }
 }
 

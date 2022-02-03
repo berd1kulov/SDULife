@@ -8,31 +8,73 @@
 import SwiftUI
 
 struct AnnouncementPage: View {
+    
+    @State private var isEditing = false
     private var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible())]
-    @State private var showingSheet = false
-    var announcementsList: [Announcement] = [Announcement(id: 001, title: "KERMEZ", image: "", club: MockData.sampleClub, date: "25/10/2020"), Announcement(id: 002, title: "KERMEZ", image: "", club: MockData.sampleClub, date: "25/10/2020")]
-    @State private var announcement: Announcement = Announcement(id: 001, title: "KERMEZ", image: "", club: MockData.sampleClub, date: "25/10/2020")
+    @State var showingSheet = false
+    @StateObject var viewModel = AnnouncementViewModel()
     @State var searchText: String = ""
+    @State var announcement: Announcement = Announcement(id: 001, user_id: 001,title: "Some title", description: "Some description", likes: 0, status: 0, created_at: "22:22", updated_at: "22:22", images:  [ "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png"])
     var body: some View {
         GeometryReader{ geom in
             VStack{
-                SearchBar(text: $searchText)
-                    .padding(.init(top: 10, leading: 10, bottom: 0, trailing: 10))
+                if #available(iOS 15.0, *) {
+                    SearchBar(text: $viewModel.searchedText)
+                        .onSubmit {
+                            viewModel.searchAnnouncement()
+                        }
+                        .submitLabel(.search)
+
+                        .padding(.init(top: 10, leading: 15, bottom: 0, trailing: 15))
+                } else {
+                    SearchBar(text: $viewModel.searchedText)
+                        .padding(.init(top: 10, leading: 15, bottom: 0, trailing: 15))
+                }
+                if(viewModel.searchedText.isEmpty){
                 ScrollView {
                     LazyVGrid(columns: gridItemLayout, spacing: 0) {
-                        ForEach(announcementsList, id: \.self) {announcements in
-                            AnnouncementCell(announcement: announcements, size: geom.size)
-                                .onTapGesture {
-                                    announcement = announcements
-                                    showingSheet = true
+                        ForEach(viewModel.announcements, id: \.self) {announcements in
+                            NavigationLink(destination: {
+                                AnnouncementDetailView(announcement: announcements)
+                            }, label: {
+                                AnnouncementCell(announcement: announcements, size: geom.size)
+                            })
+                        }
+                        if(viewModel.currentPage < viewModel.totalPage){
+                            ProgressView()
+                                .padding()
+                                .onAppear{
+                                    viewModel.currentPage = viewModel.currentPage + 1
+                                    viewModel.getAnnouncements()
                                 }
                         }
                     }
+                    .onAppear {
+                        viewModel.getAnnouncements()
+                    }
+                    
                 }
-            }            
+                }else{
+                    ScrollView {
+                        LazyVGrid(columns: gridItemLayout, spacing: 0) {
+                            ForEach(viewModel.searchedAnnouncements, id: \.self) {announcements in
+                                NavigationLink(destination: {
+                                    AnnouncementDetailView(announcement: announcements)
+                                }, label: {
+                                    AnnouncementCell(announcement: announcements, size: geom.size)
+                                })
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
-        .fullScreenCover(isPresented: $showingSheet){
-            AnnouncementDetailView(announcement: announcement)
+        .navigationBarHidden(true)
+        .alert(item: $viewModel.alertItem) { alertItem in
+            Alert(title: alertItem.title,
+                  message: alertItem.message,
+                  dismissButton: alertItem.dismissButton)
         }
     }
 }

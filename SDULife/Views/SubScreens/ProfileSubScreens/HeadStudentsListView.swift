@@ -15,7 +15,7 @@ struct HeadStudentsListView: View {
             NavigationLink(destination: {
                 StudentProfileView(user: user)
             }, label: {
-                UserListCell(user: user)
+//                UserListCell(user: user)
             })
             
         }

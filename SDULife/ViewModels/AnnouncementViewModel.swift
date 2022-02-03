@@ -1,21 +1,21 @@
 //
-//  FoundsViewModel.swift
+//  AppointmentsViewModel.swift
 //  SDULife
 //
-//  Created by Bakdaulet Berdikul on 23.12.2021.
+//  Created by Dias Berdikul on 01.02.2022.
 //
 
 import Foundation
 import SwiftUI
 
-final class FoundsViewModel: ObservableObject {
+final class AnnouncementViewModel: ObservableObject {
     
-    @Published var searchedFounds: [Founds] = []
-    @Published var founds: [Founds] = []
+    @Published var searchedAnnouncements: [Announcement] = []
+    @Published var announcements: [Announcement] = []
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
     @Published var isShowingDetail = false
-    @Published var selectedFound: Founds?
+    @Published var selectedAnnouncement: Announcement?
     @Published var searchedText: String = ""
     
     var lastPageNotLoaded = true
@@ -24,16 +24,16 @@ final class FoundsViewModel: ObservableObject {
     let token = UserDefaults.standard.string(forKey: "token")
     
     
-    func getFounds() {
+    func getAnnouncements() {
         isLoading = true
-        NetworkManager.shared.getFoundsFromServer(token: "Bearer " + (token ?? ""), foundsUrl: "https://sdulife.abmco.kz/api/found?page=\(self.currentPage)") { [self] result in
+        NetworkManager.shared.getAnnouncementFromServer(token: "Bearer " + (token ?? ""), announcementUrl: "https://sdulife.abmco.kz/api/announcement?page=\(self.currentPage)") { [self] result in
             DispatchQueue.main.async {
                 isLoading = false
                 switch result {
-                case .success(let foundsResponse):
-                    self.totalPage = Int(foundsResponse.meta.total/foundsResponse.meta.per_page)
+                case .success(let announcementResponse):
+                    self.totalPage = Int(announcementResponse.meta.total/announcementResponse.meta.per_page)
                     if(self.lastPageNotLoaded){
-                        self.founds.append(contentsOf: foundsResponse.data)
+                        self.announcements.append(contentsOf: announcementResponse.data)
                     }
                     if(self.currentPage >= self.totalPage){
                         self.lastPageNotLoaded = false
@@ -58,14 +58,14 @@ final class FoundsViewModel: ObservableObject {
         }
     }
     
-    func searchFounds(){
-        NetworkManager.shared.searchFounds(token: "Bearer " + (token ?? ""), text: searchedText){ [self] result in
+    func searchAnnouncement(){
+        NetworkManager.shared.searchAnnouncements(token: "Bearer " + (token ?? ""), text: searchedText){ [self] result in
             
             DispatchQueue.main.async {
                 switch result {
-                case .success(let searchedFound):
-                    self.searchedFounds.removeAll()
-                    self.searchedFounds.append(contentsOf: searchedFound)
+                case .success(let searchedAnnouncement):
+                    self.searchedAnnouncements.removeAll()
+                    self.searchedAnnouncements.append(contentsOf: searchedAnnouncement)
                   
                 case .failure(let error):
                     switch error {

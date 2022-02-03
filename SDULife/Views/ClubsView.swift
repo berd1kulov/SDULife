@@ -16,6 +16,7 @@ struct ClubsView: View {
             NavigationView{
                 VStack{
                     SearchBar(text: $searchText)
+                        .padding(.init(top: 0, leading: 15, bottom: 0, trailing: 15))
                     List{
                         HStack{
                             Text("Univercity Clubs")

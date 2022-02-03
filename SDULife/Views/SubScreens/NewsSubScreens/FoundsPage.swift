@@ -9,25 +9,37 @@ import SwiftUI
 
 struct FoundsPage: View {
     
+    @State private var isEditing = false
     private var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible())]
     @State private var showingSheet = false
     @StateObject var viewModel = FoundsViewModel()
-    @State private var founds: Founds = Founds(id: 001, user_id: 001,title: "Some title", description: "Some description", status: 0, created_at: "22:22", updated_at: "22:22", time: "10:23", images: ["https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png"])
+    @State private var founds: Founds = Founds(id: 001, user_id: 001,title: "Some title", description: "Some description", status: 0, created_at: "22:22", updated_at: "22:22", time: "10:23", images: [])
     @State var searchText: String = ""
     var body: some View {
         GeometryReader{ geom in
             
             VStack{
-                SearchBar(text: $searchText)
-                    .padding(.init(top: 10, leading: 10, bottom: 0, trailing: 10))
+                if #available(iOS 15.0, *) {
+                    SearchBar(text: $viewModel.searchedText)
+                        .onSubmit {
+                            viewModel.searchFounds()
+                        }
+                        .submitLabel(.search)
+
+                        .padding(.init(top: 10, leading: 15, bottom: 0, trailing: 15))
+                } else {
+                    SearchBar(text: $viewModel.searchedText)
+                        .padding(.init(top: 10, leading: 15, bottom: 0, trailing: 15))
+                }
+                if(viewModel.searchedText.isEmpty){
                 ScrollView {
                     LazyVGrid(columns: gridItemLayout, spacing: 0) {
                         ForEach(viewModel.founds) {found in
-                            FoundsCell(found: found, size: geom.size)
-                                .onTapGesture {
-                                    founds = found
-                                    showingSheet = true
-                                }
+                            NavigationLink(destination: {
+                                FoundsDetailView(founds: found)
+                            }, label: {
+                                FoundsCell(found: found, size: geom.size)
+                            })
                         }
                         if(viewModel.currentPage < viewModel.totalPage){
                             ProgressView()
@@ -38,14 +50,30 @@ struct FoundsPage: View {
                                 }
                         }
                     }
+                    .onAppear {
+                        viewModel.getFounds()
+                    }
+                }
+                }else{
+                    ScrollView {
+                        LazyVGrid(columns: gridItemLayout, spacing: 0) {
+                            ForEach(viewModel.searchedFounds) {found in
+                                NavigationLink(destination: {
+                                    FoundsDetailView(founds: found)
+                                }, label: {
+                                    FoundsCell(found: found, size: geom.size)
+                                })
+                            }
+                        }
+                    }
                 }
             }
-            .onAppear {
-                viewModel.getFounds()
-            }
         }
-        .fullScreenCover(isPresented: $showingSheet){
-            FoundsDetailView(founds: founds)
+        .navigationBarHidden(true)
+        .alert(item: $viewModel.alertItem) { alertItem in
+            Alert(title: alertItem.title,
+                  message: alertItem.message,
+                  dismissButton: alertItem.dismissButton)
         }
     }
 }
