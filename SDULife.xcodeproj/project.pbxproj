@@ -20,6 +20,10 @@
 		C04B118127743E3500B71776 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C04B117827743E3400B71776 /* Poppins-SemiBold.ttf */; };
 		C04B118227743E3500B71776 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C04B117927743E3400B71776 /* Poppins-Thin.ttf */; };
 		C04B118327743E3500B71776 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C04B117A27743E3500B71776 /* Poppins-Black.ttf */; };
+		C04C876427AD03F300D4CCC2 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04C876327AD03F300D4CCC2 /* Recommendation.swift */; };
+		C04C876627AD04E200D4CCC2 /* RecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04C876527AD04E200D4CCC2 /* RecommendationViewModel.swift */; };
+		C04C876827AD377500D4CCC2 /* AppointmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04C876727AD377500D4CCC2 /* AppointmentViewModel.swift */; };
+		C04C876A27AD385F00D4CCC2 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04C876927AD385E00D4CCC2 /* Appointment.swift */; };
 		C04EA8C72747E2A2001CD8C5 /* Founds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04EA8C62747E2A2001CD8C5 /* Founds.swift */; };
 		C04EA8C92747EE4B001CD8C5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04EA8C82747EE4A001CD8C5 /* ProfileView.swift */; };
 		C0572D9C274221E400327EA4 /* SDULifeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0572D9B274221E400327EA4 /* SDULifeApp.swift */; };
@@ -71,6 +75,9 @@
 		C0C9A282275660D80032F42D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9A281275660D80032F42D /* LoadingView.swift */; };
 		C0C9A284275661140032F42D /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9A283275661140032F42D /* Color+Ext.swift */; };
 		C0C9A2872756645A0032F42D /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9A2862756645A0032F42D /* RemoteImage.swift */; };
+		C0EA361827AC2A3E00C1729A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C0EA361727AC2A3E00C1729A /* Alamofire */; };
+		C0EA361A27AC36DD00C1729A /* AddAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA361927AC36DD00C1729A /* AddAnnouncementView.swift */; };
+		C0EA361C27AC66F500C1729A /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA361B27AC66F500C1729A /* CongratsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +93,10 @@
 		C04B117827743E3400B71776 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		C04B117927743E3400B71776 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		C04B117A27743E3500B71776 /* Poppins-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.ttf"; sourceTree = "<group>"; };
+		C04C876327AD03F300D4CCC2 /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
+		C04C876527AD04E200D4CCC2 /* RecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationViewModel.swift; sourceTree = "<group>"; };
+		C04C876727AD377500D4CCC2 /* AppointmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentViewModel.swift; sourceTree = "<group>"; };
+		C04C876927AD385E00D4CCC2 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		C04EA8C62747E2A2001CD8C5 /* Founds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Founds.swift; sourceTree = "<group>"; };
 		C04EA8C82747EE4A001CD8C5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C0572D98274221E400327EA4 /* SDULife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDULife.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +150,8 @@
 		C0C9A283275661140032F42D /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		C0C9A2862756645A0032F42D /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		C0C9A28A2757595B0032F42D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C0EA361927AC36DD00C1729A /* AddAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnnouncementView.swift; sourceTree = "<group>"; };
+		C0EA361B27AC66F500C1729A /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C04282E9279139DB00782427 /* SDWebImageSwiftUI in Frameworks */,
+				C0EA361827AC2A3E00C1729A /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +173,7 @@
 				C02A1B9E2742A8CF00070ACC /* NewsDetailView.swift */,
 				C03555392743EB0000D2F0B1 /* FoundsDetailView.swift */,
 				C087260E274F826F00B1FE93 /* AnnouncementDetailView.swift */,
+				C0EA361927AC36DD00C1729A /* AddAnnouncementView.swift */,
 			);
 			path = DetailedPages;
 			sourceTree = "<group>";
@@ -246,6 +261,8 @@
 				C04EA8C62747E2A2001CD8C5 /* Founds.swift */,
 				C0872608274F7BAA00B1FE93 /* Announcement.swift */,
 				C0B7F6A5274FBFF000B8418B /* Notification.swift */,
+				C04C876327AD03F300D4CCC2 /* Recommendation.swift */,
+				C04C876927AD385E00D4CCC2 /* Appointment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -285,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				C0572DC127423B4200327EA4 /* SearchBar.swift */,
+				C0EA361B27AC66F500C1729A /* CongratsView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -392,6 +410,8 @@
 				C09D20B82773A6D000E82EA7 /* FoundsViewModel.swift */,
 				C0B73AF527A85D68007BD411 /* AnnouncementViewModel.swift */,
 				C0B73AF727A865D3007BD411 /* NewsViewModel.swift */,
+				C04C876527AD04E200D4CCC2 /* RecommendationViewModel.swift */,
+				C04C876727AD377500D4CCC2 /* AppointmentViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -442,6 +462,7 @@
 			name = SDULife;
 			packageProductDependencies = (
 				C04282E8279139DB00782427 /* SDWebImageSwiftUI */,
+				C0EA361727AC2A3E00C1729A /* Alamofire */,
 			);
 			productName = SDULife;
 			productReference = C0572D98274221E400327EA4 /* SDULife.app */;
@@ -473,6 +494,7 @@
 			mainGroup = C0572D8F274221E400327EA4;
 			packageReferences = (
 				C04282E7279139DB00782427 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				C0EA361627AC2A3E00C1729A /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = C0572D99274221E400327EA4 /* Products */;
 			projectDirPath = "";
@@ -510,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0572DA8274221E700327EA4 /* SDULife.xcdatamodeld in Sources */,
+				C0EA361C27AC66F500C1729A /* CongratsView.swift in Sources */,
 				C087260D274F7CB500B1FE93 /* AnnouncementCell.swift in Sources */,
 				C09D20B92773A6D000E82EA7 /* FoundsViewModel.swift in Sources */,
 				C0BCF0D127A43FAC00DB1940 /* ScheduleSessionView.swift in Sources */,
@@ -541,22 +564,27 @@
 				C0572DAF274224AE00327EA4 /* NewsView.swift in Sources */,
 				C03555382743E65600D2F0B1 /* FoundsCell.swift in Sources */,
 				C09D20B727737CFC00E82EA7 /* LoginViewModel.swift in Sources */,
+				C04C876627AD04E200D4CCC2 /* RecommendationViewModel.swift in Sources */,
 				C0B7F6A0274FB26100B8418B /* DevelopmentView.swift in Sources */,
 				C0B7F6AB274FC88700B8418B /* StudentProfileView.swift in Sources */,
 				C0C9A282275660D80032F42D /* LoadingView.swift in Sources */,
 				C0572DBE274234E400327EA4 /* AnnouncementPage.swift in Sources */,
 				C087261A274F9B5F00B1FE93 /* ClubHeadDetailedView.swift in Sources */,
 				C0C9A2872756645A0032F42D /* RemoteImage.swift in Sources */,
+				C04C876827AD377500D4CCC2 /* AppointmentViewModel.swift in Sources */,
 				C0C9A284275661140032F42D /* Color+Ext.swift in Sources */,
 				C04EA8C72747E2A2001CD8C5 /* Founds.swift in Sources */,
 				C0C9A26F275620240032F42D /* APIError.swift in Sources */,
+				C0EA361A27AC36DD00C1729A /* AddAnnouncementView.swift in Sources */,
 				C0BCF0CE27A43CB300DB1940 /* AppoinmentView.swift in Sources */,
 				C035553A2743EB0000D2F0B1 /* FoundsDetailView.swift in Sources */,
 				C0B7F6A4274FBF8E00B8418B /* NotificationCell.swift in Sources */,
 				C0572DC0274234FB00327EA4 /* FoundsPage.swift in Sources */,
 				C0872620274F9CF600B1FE93 /* UserListCell.swift in Sources */,
 				C0872611274F89AF00B1FE93 /* ClubsView.swift in Sources */,
+				C04C876A27AD385F00D4CCC2 /* Appointment.swift in Sources */,
 				C0572D9C274221E400327EA4 /* SDULifeApp.swift in Sources */,
+				C04C876427AD03F300D4CCC2 /* Recommendation.swift in Sources */,
 				C04EA8C92747EE4B001CD8C5 /* ProfileView.swift in Sources */,
 				C0572DC427423D0900327EA4 /* NewsCell.swift in Sources */,
 				C0572DB92742297D00327EA4 /* Login.swift in Sources */,
@@ -697,6 +725,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SDULife/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "SDULife needs access to your photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -732,6 +761,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SDULife/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "SDULife needs access to your photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -785,6 +815,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		C0EA361627AC2A3E00C1729A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -792,6 +830,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C04282E7279139DB00782427 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		C0EA361727AC2A3E00C1729A /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0EA361627AC2A3E00C1729A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 

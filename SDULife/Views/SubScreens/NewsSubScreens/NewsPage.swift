@@ -34,6 +34,7 @@ struct NewsPage: View {
                 ForEach(viewModel.news){ news in
                     NavigationLink(destination: {
                         NewsDetailView(news: news)
+                        
                     }, label: {
                         NewsCell(news: news)
                     })

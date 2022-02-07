@@ -14,7 +14,6 @@ struct AnnouncementPage: View {
     @State var showingSheet = false
     @StateObject var viewModel = AnnouncementViewModel()
     @State var searchText: String = ""
-    @State var announcement: Announcement = Announcement(id: 001, user_id: 001,title: "Some title", description: "Some description", likes: 0, status: 0, created_at: "22:22", updated_at: "22:22", images:  [ "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png"])
     var body: some View {
         GeometryReader{ geom in
             VStack{
@@ -34,11 +33,19 @@ struct AnnouncementPage: View {
                 ScrollView {
                     LazyVGrid(columns: gridItemLayout, spacing: 0) {
                         ForEach(viewModel.announcements, id: \.self) {announcements in
-                            NavigationLink(destination: {
-                                AnnouncementDetailView(announcement: announcements)
-                            }, label: {
-                                AnnouncementCell(announcement: announcements, size: geom.size)
-                            })
+                            if(announcements.title == "Add announcement"){
+                                NavigationLink(destination: {
+                                    AddAnnouncementView()
+                                }, label: {
+                                    AddAnnouncementCell(size: geom.size)
+                                })
+                            }else{
+                                NavigationLink(destination: {
+                                    AnnouncementDetailView(announcement: announcements)
+                                }, label: {
+                                    AnnouncementCell(announcement: announcements, size: geom.size)
+                                })
+                            }
                         }
                         if(viewModel.currentPage < viewModel.totalPage){
                             ProgressView()

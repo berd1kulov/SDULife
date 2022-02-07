@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct AppoinmentView: View {
+    
+    @StateObject var viewModel = AppointmentViewModel()
     var body: some View {
         ScrollView(showsIndicators: false){
             VStack{
-                ForEach(0..<5){i in
+                ForEach(viewModel.appointments){ appointment in
                     NavigationLink(destination: {
-                        ScheduleSessionView()
+                        ScheduleSessionView(appointment: appointment)
                     }, label: {
-                        AppointmentCell()
+                        AppointmentCell(appointment: appointment)
                     })
                         
                 }
+            }
+            .onAppear{
+                viewModel.getAppointments()
             }
         }.navigationBarTitle("Appointment", displayMode: .inline)
     }

@@ -9,19 +9,21 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ScheduleSessionView: View {
+    
     @State var text: String = ""
+    var appointment: Appointment = Appointment(id: 1, name: "", type: "", subtitle: "", description: "", image_id: 1, user_id: 1, created_at: "", updated_at: "", image: "")
     var body: some View {
         VStack{
             HStack{
-                WebImage(url: URL(string: "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png"))
+                WebImage(url: URL(string:appointment.image == nil ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" : (MockData.imageBase + appointment.image!)))
                     .resizable()
-                    .frame(width: 35, height: 35, alignment: .center)
-                    .cornerRadius(17.5)
                     .scaledToFill()
+                    .frame(width: 35, height: 35)
+                    .cornerRadius(17.5)
                 VStack(alignment: .leading){
-                    Text("Saltanat Amangeldiyeva")
+                    Text(appointment.name)
                         .font(Font.custom("Poppins-SemiBold", size: 12))
-                    Text("PhD Psychology")
+                    Text(appointment.subtitle)
                         .font(Font.custom("Poppins-Regular", size: 12))
                         .opacity(0.5)
                 }
@@ -30,7 +32,7 @@ struct ScheduleSessionView: View {
             Divider()
             ScrollView{
                 VStack{
-                    Text("")
+                    Link("Link to Chat", destination: URL(string: "https://t.me/berd1kulov")!)
                 }
             }
             

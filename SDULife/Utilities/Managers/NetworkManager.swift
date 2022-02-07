@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftUI
 
 final class NetworkManager {
     
@@ -84,6 +86,80 @@ final class NetworkManager {
                 let decoder = JSONDecoder()
                 let decodedResponse = try decoder.decode(ClubResponse.self, from: data)
                 completed(.success(decodedResponse))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func getRecommendationsFromServer(token: String, recommendationUrl: String, completed: @escaping (Result<[Recommendation], APIError>) -> Void) {
+        guard let url = URL(string: recommendationUrl) else {
+            completed(.failure(.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let decodedResponse = try decoder.decode([Recommendation].self, from: data)
+                completed(.success(decodedResponse))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func getAppointmentsFromServer(token: String, appointmentUrl: String, completed: @escaping (Result<[Appointment], APIError>) -> Void) {
+        guard let url = URL(string: appointmentUrl) else {
+            completed(.failure(.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let decodedResponse = try decoder.decode(AppointmentResponse.self, from: data)
+                completed(.success(decodedResponse.data))
             } catch {
                 completed(.failure(.invalidData))
             }
@@ -239,6 +315,7 @@ final class NetworkManager {
 
         }.resume()
     }
+    
     
     func clubJoinLeaveAcceptRequest(req_type: Int, token: String, club_id: Int,  user_id: Int, completion: @escaping (Result<String, APIError>) -> Void){
         var basicURL: String = "https://sdulife.abmco.kz/api/club"

@@ -9,62 +9,88 @@ import SwiftUI
 
 struct NewsView: View {
     
-    @State private var selected = 1
+    @State private var selected = 0
     @State private var isLabelShown = true
     var body: some View {
         NavigationView{
-        VStack{
-            if isLabelShown {
-                HStack(spacing: 40) {
-                    VStack{
-                        Text("News")
-                            .font(Font.custom("Poppins-SemiBold", size: 13))
-                            .foregroundColor(selected == 1 ? Color.brandPrimary : .gray)
-                        if(selected == 1){
-                            Text("----------")
-                                .font(Font.custom("Poppins-SemiBold", size: 13))
-                                .foregroundColor(Color.brandPrimary)
-                        }
-                    }
-                    VStack{
-                        Text("Announcement")
-                            .font(Font.custom("Poppins-SemiBold", size: 13))
-                            .foregroundColor(selected == 2 ? Color.brandPrimary : .gray)
-                        if(selected == 2){
-                            Text("----------")
-                                .font(Font.custom("Poppins-SemiBold", size: 13))
-                                .foregroundColor(Color.brandPrimary)
-                        }
-                    }
+            VStack{
+                if isLabelShown {
+                    TabBarView(currentTab: $selected)
+                }
+                TabView(selection: self.$selected){
+                    NewsPage()
+                        .tag(0)
+                    AnnouncementPage()
+                        .tag(1)
+                    FoundsPage()
+                        .tag(2)
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                
+            }
+        }
+        
+    }
+}
+
+struct TabBarView: View {
+    @Binding var currentTab: Int
+    @Namespace var namespace
+    
+    var tabBarOptions: [String] = ["News", "Announcement", "Founds"]
+    var body: some View {
+        
+            HStack(spacing: 20) {
+                ForEach(Array(zip(self.tabBarOptions.indices,
+                                  self.tabBarOptions)),
+                        id: \.0,
+                        content: {
+                    index, name in
+                    TabBarItem(currentTab: self.$currentTab,
+                               namespace: namespace.self,
+                               tabBarItemName: name,
+                               tab: index)
                     
-                    VStack{
-                        Text("Founds")
-                            .font(Font.custom("Poppins-SemiBold", size: 13))
-                            .foregroundColor(selected == 3 ? Color.brandPrimary : .gray)
-                       
-                        if(selected == 3){
-                            
-                            Text("----------")
-                                .font(Font.custom("Poppins-SemiBold", size: 13))
-                                .foregroundColor(Color.brandPrimary)
-                        }
-                        
-                    }
+                })
+            }
+            .padding(.horizontal)
+        .frame(height: 40)
+//        .edgesIgnoringSafeArea(.all)
+    }
+}
+
+struct TabBarItem: View {
+    @Binding var currentTab: Int
+    let namespace: Namespace.ID
+    
+    var tabBarItemName: String
+    var tab: Int
+    
+    var body: some View {
+        Button {
+            self.currentTab = tab
+        } label: {
+            VStack {
+                Spacer()
+                if currentTab == tab {
+                    Text(tabBarItemName)
+                        .font(Font.custom("Poppins-SemiBold", size: 13))
+                        .foregroundColor(Color.brandPrimary)
+                    Color.brandPrimary
+                        .frame(height: 5)
+                        .matchedGeometryEffect(id: "underline",
+                                               in: namespace,
+                                               properties: .frame)
+                } else {
+                    Text(tabBarItemName)
+                        .font(Font.custom("Poppins-SemiBold", size: 13))
+                        .foregroundColor(.gray)
+                    Color.clear.frame(height: 5)
                 }
             }
-            TabView(selection: self.$selected){
-                NewsPage()
-                    .tag(1)
-                AnnouncementPage()
-                    .tag(2)
-                FoundsPage()
-                    .tag(3)
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            
+            .animation(.spring(), value: self.currentTab)
         }
-        }
-
+        .buttonStyle(.plain)
     }
 }
 

@@ -18,37 +18,55 @@ struct ScheduleSessionPage: View {
     @State private var endMinutes = 00
     @State var name: String = ""
     @State var surname: String = ""
+    @State var problem: String = ""
+    let screenSize = UIScreen.main.bounds.size
     private var days = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
     private var years = ["2022", "2023", "2024", "2025"]
     private var months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
     var body: some View {
         VStack{
-            TextField(" Name", text: $name)
-                .frame(width: 325, height: 50)
+            TextField("Name", text: $name)
+                .frame(width: screenSize.width-100, height: 40)
+                .padding(7)
+                .padding(.horizontal, 25)
+
                 .overlay(
-                        RoundedRectangle(cornerRadius: 2)
-                            .stroke(Color.gray, lineWidth: 0.5)
-                    )
-            TextField(" Surname", text: $surname)
-                .frame(width: 325, height: 50)
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(lineWidth: 0.2)
+                )
+                .padding(.horizontal, 10)
+            TextField("Surname", text: $surname)
+                .frame(width: screenSize.width-100, height: 40)
+                .padding(7)
+                .padding(.horizontal, 25)
+
                 .overlay(
-                        RoundedRectangle(cornerRadius: 2)
-                            .stroke(Color.gray, lineWidth: 0.5)
-                    )
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(lineWidth: 0.2)
+                )
+                .padding(.horizontal, 10)
+            TextField("Problem", text: $problem)
+                .frame(width: screenSize.width-100, height: 40)
+                .padding(7)
+                .padding(.horizontal, 25)
+
+                .overlay(
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(lineWidth: 0.2)
+                )
+                .padding(.horizontal, 10)
             HStack{
                 Picker("", selection: $selectedDayIndex){
                     ForEach(0..<days.count){
                         Text(self.days[$0])
-                            .frame(width: 155, height: 50)
-                            .border(Color.gray, width: 1)
                     }
                 }
-                .frame(width: 155, height: 50)
+                .frame(width: (screenSize.width-100)/2, height: 40)
+                .padding(7)
                 .overlay(
-                        RoundedRectangle(cornerRadius: 2)
-                            .stroke(Color.gray, lineWidth: 0.5)
-                    )
-                Spacer()
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(lineWidth: 0.2)
+                )
                 
                 Picker("", selection: $selectedYearIndex){
                     ForEach(0..<years.count){
@@ -56,11 +74,12 @@ struct ScheduleSessionPage: View {
                             
                     }
                 }
-                .frame(width: 155, height: 50)
+                .frame(width: (screenSize.width-100)/2, height: 40)
+                .padding(7)
                 .overlay(
-                        RoundedRectangle(cornerRadius: 2)
-                            .stroke(Color.gray, lineWidth: 0.5)
-                    )
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(lineWidth: 0.2)
+                )
             }
             HStack{
                 Picker("", selection: $selectedMonthIndex){
@@ -69,12 +88,12 @@ struct ScheduleSessionPage: View {
                             
                     }
                 }
-                .frame(width: 155, height: 50)
+                .frame(width: (screenSize.width-100)/2, height: 40)
+                .padding(7)
                 .overlay(
-                        RoundedRectangle(cornerRadius: 2)
-                            .stroke(Color.gray, lineWidth: 0.5)
-                    )
-                Spacer()
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(lineWidth: 0.2)
+                )
             }
             HStack{
                 Picker("", selection: $startHours){
@@ -82,55 +101,54 @@ struct ScheduleSessionPage: View {
                         Text("\(i)").tag(i)
                     }
                 }
-                .frame(width: 73, height: 50)
+                .frame(width: (screenSize.width-100)/4, height: 50)
                 .overlay(
-                        RoundedRectangle(cornerRadius: 2)
-                            .stroke(Color.gray, lineWidth: 0.5)
-                    )
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(lineWidth: 0.2)
+                )
                 
                 Picker("", selection: $startMinutes){
                     ForEach(0..<60, id: \.self) { i in
                         Text("\(i)").tag(i)
                     }
                 }
-                .frame(width: 73, height: 50)
+                .frame(width: (screenSize.width-100)/4, height: 50)
                 .overlay(
-                        RoundedRectangle(cornerRadius: 2)
-                            .stroke(Color.gray, lineWidth: 0.5)
-                    )
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(lineWidth: 0.2)
+                )
                 Text("-")
                 Picker("", selection: $endHours){
                     ForEach(0..<24, id: \.self) { i in
                         Text("\(i)").tag(i)
                     }
                 }
-                .frame(width: 73, height: 50)
+                .frame(width: (screenSize.width-100)/4, height: 50)
                 .overlay(
-                        RoundedRectangle(cornerRadius: 2)
-                            .stroke(Color.gray, lineWidth: 0.5)
-                    )
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(lineWidth: 0.2)
+                )
                 
                 Picker("", selection: $endMinutes){
                     ForEach(0..<60, id: \.self) { i in
                         Text("\(i)").tag(i)
                     }
                 }
-                .frame(width: 73, height: 50)
+                .frame(width: (screenSize.width-100)/4, height: 50)
                 .overlay(
-                        RoundedRectangle(cornerRadius: 2)
-                            .stroke(Color.gray, lineWidth: 0.5)
-                    )
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(lineWidth: 0.2)
+                )
             }
             Spacer()
             Button(action: {}, label: {
                 Text("Add now")
-                    .frame(width: 325, height: 50, alignment: .center)
+                    .frame(width: screenSize.width-100, height: 50, alignment: .center)
                     .background(Color.brandPrimary)
                     .foregroundColor(.white)
                     .font(Font.custom("Poppins-Regular", size: 12))
             })
         }
-        .frame(width: 330)
         .navigationBarTitle("Scedule a session", displayMode: .inline)
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import SDWebImageSwiftUI
 struct AnnouncementDetailView: View {
     
     @GestureState private var dragOffset = CGSize.zero
@@ -29,10 +29,12 @@ struct AnnouncementDetailView: View {
                         Text(announcement.title)
                             .font(.system(size: 24))
                             .bold()
-                        Image("no-image")
+                        WebImage(url: URL(string: announcement.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  "https://sdulife.abmco.kz/\(announcement.images[0].path)"))
                             .resizable()
-                            .scaledToFit()
-                            .frame(width: geom.size.width-30, alignment: .center)
+                            .scaledToFill()
+                            .frame(width: geom.size.width-30, height: 331, alignment: .center)
+                            .clipShape(Rectangle())
+                            
                         
                         Text(announcement.description)
                             .font(.system(size: 15))

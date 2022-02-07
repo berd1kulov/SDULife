@@ -7,11 +7,12 @@
 
 import Foundation
 import SwiftUI
+import Alamofire
 
 final class AnnouncementViewModel: ObservableObject {
     
     @Published var searchedAnnouncements: [Announcement] = []
-    @Published var announcements: [Announcement] = []
+    @Published var announcements: [Announcement] = [Announcement(id: 0, user_id: 0, title: "Add announcement", description: "", likes: 0, status: 0, created_at: "", updated_at: "", images: [])]
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
     @Published var isShowingDetail = false
@@ -86,4 +87,35 @@ final class AnnouncementViewModel: ObservableObject {
             
         }
     }
+    
+    func addAnnouncementToServer(imageDatas: [UIImage], user_id: String, title: String, description: String){
+        self.isLoading = true
+            let headers: HTTPHeaders = [
+                .authorization("Bearer "+token!),
+                .accept("application/json")
+            ]
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(user_id.data(using: .utf8)!, withName :"user_id")
+                multipartFormData.append(title.data(using: .utf8)!, withName :"title")
+                multipartFormData.append(description.data(using: .utf8)!, withName :"description")
+                for imageData in imageDatas {
+                    multipartFormData.append(imageData.jpegData(compressionQuality: 1)!, withName: "img[]", fileName: "someFile.jpg", mimeType: "image/jpeg")
+                }
+                
+            }, to: "http://sdulife.abmco.kz/api/announcement", method: .post, headers: headers)
+            .uploadProgress(closure: { (progress) in
+                print("Upload Progress: \(progress.fractionCompleted)")
+                if(progress.fractionCompleted == 1){
+                    self.isLoading = false
+                }
+            })
+            .responseDecodable(of: AddAnnouncementResponse.self){ response in
+                switch response.result {
+                case .success:
+                    print("Validation Successful)")
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
 }

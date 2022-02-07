@@ -20,8 +20,10 @@ struct FoundsDetailView: View {
                     VStack(alignment: .leading){
                         WebImage(url: URL(string: founds.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  "https://sdulife.abmco.kz/\(founds.images[choosenImage].path)"))
                             .resizable()
+                            .scaledToFill()
                             .frame(width: geom.size.width, height: 331, alignment: .center)
-                            .scaledToFit()
+                            .clipShape(Rectangle())
+                            
                         ScrollView(.horizontal){
                             HStack{
                                 ForEach(founds.images, id: \.self){ image in

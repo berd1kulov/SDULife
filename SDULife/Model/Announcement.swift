@@ -17,9 +17,12 @@ struct Announcement:Decodable, Identifiable, Hashable{
     var status: Int
     var created_at: String
     var updated_at: String
-    var images: [String]
+    var images: [AnnouncementImage]
 }
 
+struct AnnouncementImage: Codable, Hashable{
+    var path: String
+}
 
 struct AnnouncementResponse: Decodable, Hashable {
     let data: [Announcement]
@@ -30,4 +33,8 @@ struct AnnouncementMeta: Decodable, Hashable {
     var current_page: Int
     var per_page: Int
     var total: Int
+}
+
+struct AddAnnouncementResponse: Codable{
+    let message: String
 }

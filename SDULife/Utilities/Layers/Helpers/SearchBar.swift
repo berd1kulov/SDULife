@@ -14,15 +14,18 @@ struct SearchBar: View {
  
     var body: some View {
         HStack {
- 
-            TextField("Search ...", text: $text)
-                .frame(height: 40)
-                .padding(7)
-                .padding(.horizontal, 25)
-
+            HStack{
+                Image(systemName: "magnifyingglass")
+                    .opacity(0.5)
+                TextField("Search ...", text: $text)
+                    .frame(height: 40)
+                    .padding(7)
+                
+            }
+            .padding(.horizontal, 23)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(lineWidth: 0.5)
+                    RoundedRectangle(cornerRadius: 2)
+                        .stroke(lineWidth: 0.2)
                 )
                 .padding(.horizontal, 10)
                 .onTapGesture {
@@ -42,6 +45,7 @@ struct SearchBar: View {
                 .animation(.default)
             }
         }
+        .padding(.init(top: 0, leading: 0, bottom: 15, trailing: 0))
     }
 }
 

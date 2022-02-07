@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct RecommendationView: View {
+    
+    @StateObject var viewModel = RecommendationViewModel()
     var body: some View {
         ScrollView{
             VStack{
@@ -19,8 +22,11 @@ struct RecommendationView: View {
                     }
                     ScrollView(.horizontal, showsIndicators: false){
                         HStack{
-                            ForEach(0..<10){i in
-                                RecommendedCell(cgSize: CGSize(width: 154, height: 196.5))
+                            ForEach(viewModel.recommendations){ recommendation in
+                                RecommendedCell(recommendation: recommendation, cgSize: CGSize(width: 154, height: 196.5))
+                                    .onTapGesture {
+                                        viewModel.selectedRecommendation = recommendation
+                                    }
                             }
                         }
                     }
@@ -33,8 +39,13 @@ struct RecommendationView: View {
                         Spacer()
                     }
                     VStack{
-                        ForEach(0..<2){ i in
-                            ClubNewsCell()
+                        ForEach(viewModel.selectedRecommendation?.videos ?? [], id: \.self ){ video in
+                            NavigationLink(destination: {
+                                WebView(request: URLRequest(url: URL(string: video.url)!))
+                            }, label: {
+                                RecommendationVideoCell(recommendationUrl: video.url, recommendationTitle: video.title, recommendationTime: "27 Jan 2016")
+                            })
+                                
                             Divider()
                         }
                     }
@@ -42,13 +53,16 @@ struct RecommendationView: View {
                 
                 Group{
                     HStack{
-                        Text("We Start Every Morning with a Smile")
+                        Text(viewModel.selectedRecommendation?.title ?? "")
                             .font(Font.custom("Poppins-SemiBold", size: 14))
                         Spacer()
                     }
-                    Text("Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Aldrin's photo, along with nearly 700 vintage NASA images, will be offered for sale this week in London at a Bloomsbury Auctions' event entitled From the Earth to the Moon. The collection features many photos never released by NASA, including a series of mosaic-like images of the lunar landscape made from stitched-together smaller photos.")
+                    Text(viewModel.selectedRecommendation?.description ?? "")
                         .font(Font.custom("Poppins-Light", size: 12))
                 }.padding(.init(top: 0, leading: 17, bottom: 15, trailing: 17))
+            }
+            .onAppear {
+                viewModel.getRecommendations()
             }
         }
         .navigationBarTitle("Recommendation", displayMode: .inline)
@@ -59,4 +73,18 @@ struct RecommendationView_Previews: PreviewProvider {
     static var previews: some View {
         RecommendationView()
     }
+}
+
+struct WebView : UIViewRepresentable {
+    
+    let request: URLRequest
+    
+    func makeUIView(context: Context) -> WKWebView  {
+        return WKWebView()
+    }
+    
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        uiView.load(request)
+    }
+    
 }

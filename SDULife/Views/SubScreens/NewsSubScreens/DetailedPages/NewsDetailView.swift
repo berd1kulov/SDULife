@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct NewsDetailView: View {
     @State private var isLiked: Bool = false
@@ -26,10 +27,12 @@ struct NewsDetailView: View {
                         Text(news.title)
                             .font(.system(size: 24))
                             .bold()
-                        Image("no-image")
+                        WebImage(url: URL(string: news.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  "https://sdulife.abmco.kz/\(news.images[0])"))
                             .resizable()
-                            .scaledToFit()
-                            .frame(width: geom.size.width-30, alignment: .center)
+                            .scaledToFill()
+                            .frame(width: geom.size.width-30, height: 331, alignment: .center)
+                            .clipShape(Rectangle())
+                            
                         
                         Text(news.body)
                             .font(.system(size: 15))

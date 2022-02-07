@@ -16,13 +16,13 @@ struct ClubsView: View {
             NavigationView{
                 VStack{
                     SearchBar(text: $searchText)
-                        .padding(.init(top: 0, leading: 15, bottom: 0, trailing: 15))
+                        .padding(.init(top: 14, leading: 15, bottom: 0, trailing: 15))
                     List{
                         HStack{
                             Text("Univercity Clubs")
                                 .font(Font.custom("Poppins-Regular", size: 13))
                             Spacer()
-                        }.padding(.init(top: 15, leading: 15, bottom: 0, trailing: 0))
+                        }.padding(.init(top: 15, leading: 0, bottom: 0, trailing: 0))
                         ForEach(viewModel.clubs){ club in
                             NavigationLink(destination: {
                                 ClubDetailedView(club: club)
@@ -37,7 +37,7 @@ struct ClubsView: View {
                             Text("Joined Clubs")
                                 .font(Font.custom("Poppins-Regular", size: 13))
                             Spacer()
-                        }.padding(.init(top: 15, leading: 15, bottom: 0, trailing: 0))
+                        }.padding(.init(top: 15, leading: 0, bottom: 0, trailing: 0))
                         ForEach(viewModel.joined_clubs){ club in
                             NavigationLink(destination: {
                                 ClubDetailedView(club: club)
@@ -52,7 +52,7 @@ struct ClubsView: View {
                             Text("Followed Clubs")
                                 .font(Font.custom("Poppins-Regular", size: 13))
                             Spacer()
-                        }.padding(.init(top: 15, leading: 15, bottom: 0, trailing: 0))
+                        }.padding(.init(top: 15, leading: 0, bottom: 0, trailing: 0))
                         ForEach(viewModel.followed_clubs){ club in
                             NavigationLink(destination: {
                                 ClubDetailedView(club: club)

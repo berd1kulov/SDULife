@@ -11,7 +11,9 @@ import SDWebImageSwiftUI
 struct NewsCell: View {
     
     var news: News
+    let screenSize = UIScreen.main.bounds.size
     var body: some View {
+        VStack{
         HStack{
             VStack(alignment: .leading){
                 Text(news.title)
@@ -20,14 +22,18 @@ struct NewsCell: View {
                 Text(news.created_at)
                     .font(Font.custom("Poppins-Light", size: 11))
             }
+            .padding(.init(top: 0, leading: 26, bottom: 0, trailing: 26))
             Spacer()
             WebImage(url: URL(string: news.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  news.images[0]))
                 .resizable()
-                .frame(width: 162, height: 147, alignment: .center)
+                .frame(width: screenSize.width/2-52, height: 147, alignment: .center)
                 .scaledToFit()
+                .padding(.init(top: 0, leading: 26, bottom: 0, trailing: 26))
+            
         }
-        .frame( height: 147, alignment: .center)
-        .padding(.init(top: 0, leading: 26, bottom: 0, trailing: 26))
+            Divider()
+        }
+        .frame( height: 160, alignment: .center)
         .contentShape(Rectangle())
     }
 }

@@ -16,13 +16,14 @@ struct FoundsCell: View {
         VStack{
             WebImage(url: URL(string: found.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  "https://sdulife.abmco.kz/\(found.images[0].path)"))
                 .resizable()
-                .frame(width: size.width/2, height: 116, alignment: .center)
+                .frame(width: size.width/2+4, height: 116, alignment: .center)
                 .scaledToFit()
             Text(found.title)
                 .bold()
                 .font(.system(size: 13))
                 .lineLimit(nil)
-                .frame(width: size.width/2, alignment: .center)
+                .frame(width: size.width/2+4, alignment: .center)
+            Spacer()
             
             HStack{
                 Text(found.time)
@@ -32,10 +33,9 @@ struct FoundsCell: View {
             .font(.system(size: 10))
             .opacity(0.8)
             .padding()
-            Divider()
-                .frame(width: size.width/2)
         }
-        .frame(width: size.width/2, height: 232, alignment: .top)
+        .frame(width: size.width/2+4, height: 232, alignment: .top)
+        .border(Color.gray, width: 0.5)
         .contentShape(Rectangle())
         
     }

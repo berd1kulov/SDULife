@@ -28,10 +28,29 @@ struct AnnouncementCell: View {
                 .font(.system(size: 11))
                 .opacity(0.5)
                 .padding()
-            Divider()
-                .frame(width: size.width/2)
         }
-        .frame(width: size.width/2, height: size.width/2, alignment: .leading)
+        .frame(width: size.width/2+4, height: size.width/2, alignment: .leading)
+        .border(Color.gray, width: 0.5)
+        .background(Color.gray.opacity(0.1))
+        .contentShape(Rectangle())
+    }
+}
+
+struct AddAnnouncementCell: View {
+    var size: CGSize
+    var body: some View {
+        VStack{
+            Image(systemName: "plus.circle")
+                .resizable()
+                .frame(width: 31, height: 31)
+                .font(Font.custom("Poppins-Regular", size: 11))
+            Text("Add announcement")
+                .font(Font.custom("Poppins-Regular", size: 11))
+        }
+        
+        .frame(width: size.width/2+4, height: size.width/2)
+        .border(Color.gray, width: 0.5)
+        .foregroundColor(Color.brandPrimary)
         .background(Color.gray.opacity(0.1))
         .contentShape(Rectangle())
     }

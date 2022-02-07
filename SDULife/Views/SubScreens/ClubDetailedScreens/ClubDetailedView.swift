@@ -43,8 +43,10 @@ struct ClubDetailedView: View {
                 HStack{
                     Text("Chat: ")
                         .font(Font.custom("Poppins-Regular", size: 13))
-                    Text("\(club.chat)")
+                    Link("\(club.chat)", destination: URL(string: club.chat)!)
                         .font(Font.custom("Poppins-SemiBold", size: 13))
+//                    Text("\(club.chat)")
+//                        .font(Font.custom("Poppins-SemiBold", size: 13))
                 }.opacity(0.7)
                 
                 Divider()
