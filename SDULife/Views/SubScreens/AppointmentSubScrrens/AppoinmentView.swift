@@ -11,21 +11,27 @@ struct AppoinmentView: View {
     
     @StateObject var viewModel = AppointmentViewModel()
     var body: some View {
-        ScrollView(showsIndicators: false){
-            VStack{
-                ForEach(viewModel.appointments){ appointment in
-                    NavigationLink(destination: {
-                        ScheduleSessionView(appointment: appointment)
-                    }, label: {
-                        AppointmentCell(appointment: appointment)
-                    })
+        ZStack{
+            ScrollView(showsIndicators: false){
+                VStack{
+                    ForEach(viewModel.appointments){ appointment in
+                        NavigationLink(destination: {
+                            ScheduleSessionView(appointment: appointment)
+                        }, label: {
+                            AppointmentCell(appointment: appointment)
+                        })
                         
+                    }
+                }
+                .onAppear{
+                    viewModel.getAppointments()
                 }
             }
-            .onAppear{
-                viewModel.getAppointments()
+            if viewModel.isLoading {
+                LoadingView()
             }
-        }.navigationBarTitle("Appointment", displayMode: .inline)
+        }
+        .navigationBarTitle("Appointment", displayMode: .inline)
     }
 }
 

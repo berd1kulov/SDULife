@@ -15,67 +15,72 @@ struct AnnouncementPage: View {
     @StateObject var viewModel = AnnouncementViewModel()
     @State var searchText: String = ""
     var body: some View {
+        ZStack{
         GeometryReader{ geom in
-            VStack{
-                if #available(iOS 15.0, *) {
-                    SearchBar(text: $viewModel.searchedText)
-                        .onSubmit {
-                            viewModel.searchAnnouncement()
-                        }
-                        .submitLabel(.search)
-
-                        .padding(.init(top: 10, leading: 15, bottom: 0, trailing: 15))
-                } else {
-                    SearchBar(text: $viewModel.searchedText)
-                        .padding(.init(top: 10, leading: 15, bottom: 0, trailing: 15))
-                }
-                if(viewModel.searchedText.isEmpty){
-                ScrollView {
-                    LazyVGrid(columns: gridItemLayout, spacing: 0) {
-                        ForEach(viewModel.announcements, id: \.self) {announcements in
-                            if(announcements.title == "Add announcement"){
-                                NavigationLink(destination: {
-                                    AddAnnouncementView()
-                                }, label: {
-                                    AddAnnouncementCell(size: geom.size)
-                                })
-                            }else{
-                                NavigationLink(destination: {
-                                    AnnouncementDetailView(announcement: announcements)
-                                }, label: {
-                                    AnnouncementCell(announcement: announcements, size: geom.size)
-                                })
+                VStack{
+                    if #available(iOS 15.0, *) {
+                        SearchBar(text: $viewModel.searchedText)
+                            .onSubmit {
+                                viewModel.searchAnnouncement()
                             }
-                        }
-                        if(viewModel.currentPage < viewModel.totalPage){
-                            ProgressView()
-                                .padding()
-                                .onAppear{
-                                    viewModel.currentPage = viewModel.currentPage + 1
-                                    viewModel.getAnnouncements()
+                            .submitLabel(.search)
+                        
+                            .padding(.init(top: 10, leading: 15, bottom: 0, trailing: 15))
+                    } else {
+                        SearchBar(text: $viewModel.searchedText)
+                            .padding(.init(top: 10, leading: 15, bottom: 0, trailing: 15))
+                    }
+                    if(viewModel.searchedText.isEmpty){
+                        ScrollView {
+                            LazyVGrid(columns: gridItemLayout, spacing: 0) {
+                                ForEach(viewModel.announcements, id: \.self) {announcements in
+                                    if(announcements.title == "Add announcement"){
+                                        NavigationLink(destination: {
+                                            AddAnnouncementView()
+                                        }, label: {
+                                            AddAnnouncementCell(size: geom.size)
+                                        })
+                                    }else{
+                                        NavigationLink(destination: {
+                                            AnnouncementDetailView(announcement: announcements)
+                                        }, label: {
+                                            AnnouncementCell(announcement: announcements, size: geom.size)
+                                        })
+                                    }
                                 }
+                                if(viewModel.currentPage < viewModel.totalPage){
+                                    ProgressView()
+                                        .padding()
+                                        .onAppear{
+                                            viewModel.currentPage = viewModel.currentPage + 1
+                                            viewModel.getAnnouncements()
+                                        }
+                                }
+                            }
+                            .onAppear {
+                                viewModel.getAnnouncements()
+                            }
+                            
                         }
-                    }
-                    .onAppear {
-                        viewModel.getAnnouncements()
-                    }
-                    
-                }
-                }else{
-                    ScrollView {
-                        LazyVGrid(columns: gridItemLayout, spacing: 0) {
-                            ForEach(viewModel.searchedAnnouncements, id: \.self) {announcements in
-                                NavigationLink(destination: {
-                                    AnnouncementDetailView(announcement: announcements)
-                                }, label: {
-                                    AnnouncementCell(announcement: announcements, size: geom.size)
-                                })
+                    }else{
+                        ScrollView {
+                            LazyVGrid(columns: gridItemLayout, spacing: 0) {
+                                ForEach(viewModel.searchedAnnouncements, id: \.self) {announcements in
+                                    NavigationLink(destination: {
+                                        AnnouncementDetailView(announcement: announcements)
+                                    }, label: {
+                                        AnnouncementCell(announcement: announcements, size: geom.size)
+                                    })
+                                }
                             }
                         }
                     }
                 }
+                
             }
-            
+            if (viewModel.isLoading && viewModel.announcements.isEmpty) {
+                LoadingView()
+            }
         }
         .navigationBarHidden(true)
         .alert(item: $viewModel.alertItem) { alertItem in

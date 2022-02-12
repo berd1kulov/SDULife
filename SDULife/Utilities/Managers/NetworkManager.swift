@@ -376,6 +376,43 @@ final class NetworkManager {
         }.resume()
     }
     
+    func getClubPostsFromServer(token: String, clubPostUrl: String, completed: @escaping (Result<ClubNewsResponse, APIError>) -> Void) {
+        guard let url = URL(string: clubPostUrl) else {
+            completed(.failure(.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let decodedResponse = try decoder.decode(ClubNewsResponse.self, from: data)
+                completed(.success(decodedResponse))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+        }
+        
+        task.resume()
+    }
+    
     func searchNews(token: String, text: String, completion: @escaping (Result<[News], APIError>) -> Void){
         let basicURL: String = "https://sdulife.abmco.kz/api/search/news"
         guard let url = URL(string: basicURL) else {

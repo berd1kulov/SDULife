@@ -10,6 +10,8 @@ import SwiftUI
 
 final class ClubListViewModel: ObservableObject {
     
+    
+    @Published var clubPosts: [ClubNews] = []
     @Published var clubs: [Club] = []
     @Published var joined_clubs: [Club] = []
     @Published var followed_clubs: [Club] = []
@@ -17,6 +19,7 @@ final class ClubListViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var isShowingDetail = false
     @Published var selectedClub: Club?
+    @Published var selectedClubId: Int = 0
     @Published var joinMessage: String = ""
     @Published var req_type: Int = 1
     @Published var users:[RequestedUser] = []
@@ -117,6 +120,41 @@ final class ClubListViewModel: ObservableObject {
                 }
             }
             
+        }
+    }
+    
+    func getClubPosts() {
+        isLoading = true
+        NetworkManager.shared.getClubPostsFromServer(token: "Bearer " + (token ?? ""), clubPostUrl: "https://sdulife.abmco.kz/api/club/posts/\(self.selectedClubId)?page=\(self.currentPage)") { [self] result in
+            DispatchQueue.main.async {
+                isLoading = false
+                switch result {
+                case .success(let clubPostsResponse):
+                    self.totalPage = Int(clubPostsResponse.meta.total/clubPostsResponse.meta.per_page)
+                    if(self.lastPageNotLoaded){
+                        self.clubPosts.append(contentsOf: clubPostsResponse.data)
+                    }
+                    if(self.currentPage >= self.totalPage){
+                        self.lastPageNotLoaded = false
+                    }
+                    
+                case .failure(let error):
+                    
+                    switch error {
+                    case .invalidResponse:
+                        alertItem = AlertContext.invalidResponse
+                        
+                    case .invalidURL:
+                        alertItem = AlertContext.invalidURL
+                        
+                    case .invalidData:
+                        alertItem = AlertContext.invalidData
+                        
+                    case .unableToComplete:
+                        alertItem = AlertContext.unableToComplete
+                    }
+                }
+            }
         }
     }
 }

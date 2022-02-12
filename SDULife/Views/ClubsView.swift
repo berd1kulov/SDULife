@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import SwiftUIRefresh
 
 struct ClubsView: View {
     
     @State var searchText: String = ""
     @StateObject var viewModel = ClubListViewModel()
+    @State private var isShowing = false
     var body: some View {
         ZStack {
             NavigationView{
@@ -64,6 +66,10 @@ struct ClubsView: View {
                         }
                         
                     }.listStyle(.plain)
+                        .pullToRefresh(isShowing: $isShowing) {
+                            viewModel.getClubs()
+                            isShowing = false
+                        }
                 }
                 .navigationBarTitle("University Clubs", displayMode: .inline)
             }
@@ -73,11 +79,15 @@ struct ClubsView: View {
             //            if viewModel.isLoading {
             //                LoadingView()
             //            }
+            if (viewModel.isLoading && viewModel.clubs.isEmpty) {
+                LoadingView()
+            }
         }
         .alert(item: $viewModel.alertItem) { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,
                   dismissButton: alertItem.dismissButton)
+            
         }
     }
 }

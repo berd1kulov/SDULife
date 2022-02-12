@@ -29,12 +29,12 @@ struct ClubDetailedView: View {
                 
                 Text(club.name)
                     .font(Font.custom("Poppins-SemiBold", size: 17))
-                Text(club.chat)
+                Text(club.description)
                     .font(Font.custom("Poppins-Light", size: 13))
                     .opacity(0.7)
                     .padding(.init(top: 10, leading: 0, bottom: 15, trailing: 0))
                 HStack{
-                    Text("Head: \(club.head_id) - \(club.head_name)")
+                    Text("Head: \(club.head_name)")
                         .font(Font.custom("Poppins-Regular", size: 13))
                     Text("")
                         .font(Font.custom("Poppins-SemiBold", size: 13))
@@ -43,7 +43,7 @@ struct ClubDetailedView: View {
                 HStack{
                     Text("Chat: ")
                         .font(Font.custom("Poppins-Regular", size: 13))
-                    Link("\(club.chat)", destination: URL(string: club.chat)!)
+                    Link("\(club.chat)", destination: URL(string: "\(club.chat)")!)
                         .font(Font.custom("Poppins-SemiBold", size: 13))
 //                    Text("\(club.chat)")
 //                        .font(Font.custom("Poppins-SemiBold", size: 13))
@@ -130,13 +130,25 @@ struct ClubDetailedView: View {
                         })
                             .padding()
                     }
-//                    ForEach(0...10, id: \.self){_ in
-//                        ClubNewsCell()
-//                        Divider()
-//
-//                    }
+                    ForEach(viewModel.clubPosts){post in
+                        ClubNewsCell(clubPost: post)
+                        Divider()
+
+                    }
+                    if(viewModel.currentPage < viewModel.totalPage){
+                        ProgressView()
+                            .padding()
+                            .onAppear{
+                                viewModel.currentPage = viewModel.currentPage + 1
+                                viewModel.getClubPosts()
+                            }
+                    }
                 }
                 
+            }
+            .onAppear{
+                viewModel.selectedClubId = club.id
+                viewModel.getClubPosts()
             }
             .padding()
             

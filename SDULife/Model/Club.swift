@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Club:Decodable, Identifiable, Hashable {
+struct Club: Codable, Identifiable, Hashable {
     var id: Int
     var name: String
     var description: String
@@ -25,8 +25,18 @@ struct Club:Decodable, Identifiable, Hashable {
     var is_member: Bool
 }
 
-struct ClubImage: Decodable, Hashable {
+struct ClubImage: Codable, Hashable {
     var path: String
+}
+
+struct ClubNews: Codable, Identifiable, Hashable {
+    let id: Int
+    let club_id: Int
+    let title: String
+    let body: String
+    let created_at: String
+    let updated_at: String
+    let images: [ClubImage]
 }
 
 struct ClubResponse: Decodable, Hashable {
@@ -34,6 +44,18 @@ struct ClubResponse: Decodable, Hashable {
     let joined_clubs: [Club]
     let followd_clubs: [Club]
 }
+
+struct ClubNewsResponse: Decodable, Hashable {
+    let data: [ClubNews]
+    let meta: ClubNewsMeta
+}
+
+struct ClubNewsMeta: Decodable, Hashable {
+    var current_page: Int
+    var per_page: Int
+    var total: Int
+}
+
 
 
 struct MockData{
