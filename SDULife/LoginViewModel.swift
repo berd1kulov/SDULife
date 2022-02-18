@@ -26,6 +26,7 @@ class LoginViewModel: ObservableObject {
                 case .success(let loginResponse):
                     defaults.setValue(loginResponse.token, forKey: "token")
                     defaults.setValue(loginResponse.user?.id, forKey: "userID")
+                    print("TOKEN: \(String(describing: loginResponse.token))")
                     self.isAuthenticated = true
                     
                 case .failure(let error):

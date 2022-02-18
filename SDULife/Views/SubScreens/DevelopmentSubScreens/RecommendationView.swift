@@ -66,7 +66,7 @@ struct RecommendationView: View {
                     viewModel.getRecommendations()
                 }
             }
-            if viewModel.isLoading {
+            if (viewModel.isLoading && viewModel.recommendations.isEmpty){
                 LoadingView()
             }
         }

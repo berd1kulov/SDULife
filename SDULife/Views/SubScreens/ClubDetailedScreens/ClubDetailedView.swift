@@ -76,7 +76,7 @@ struct ClubDetailedView: View {
                 Divider()
                 VStack {
                     Text(viewModel.joinMessage).font(.largeTitle)
-                    if(club.head_id == Int(userID ?? "0")){
+                    if(club.head_id != Int(userID ?? "0")){
                         HStack{
                             if(!club.is_member){
                                 Button(action: {

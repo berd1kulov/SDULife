@@ -16,7 +16,7 @@ struct AnnouncementPage: View {
     @State var searchText: String = ""
     var body: some View {
         ZStack{
-        GeometryReader{ geom in
+            GeometryReader{ geom in
                 VStack{
                     if #available(iOS 15.0, *) {
                         SearchBar(text: $viewModel.searchedText)

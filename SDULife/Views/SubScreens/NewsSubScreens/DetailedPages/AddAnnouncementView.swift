@@ -86,6 +86,9 @@ struct AddAnnouncementView: View {
         .sheet(isPresented: $showSheet) {
             ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
         }
+        .sheet(isPresented: $viewModel.isLoaded) {
+            CongratsView()
+        }
     }
     
     

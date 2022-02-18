@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7157CBDF27B76A3B00D97402 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 7157CBDE27B76A3B00D97402 /* SwiftUIRefresh */; };
-		7157CBE427B76F5500D97402 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157CBE327B76F5500D97402 /* PullToRefresh.swift */; };
 		C02A1B9F2742A8CF00070ACC /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A1B9E2742A8CF00070ACC /* NewsDetailView.swift */; };
 		C03555382743E65600D2F0B1 /* FoundsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03555372743E65600D2F0B1 /* FoundsCell.swift */; };
 		C035553A2743EB0000D2F0B1 /* FoundsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03555392743EB0000D2F0B1 /* FoundsDetailView.swift */; };
@@ -84,7 +83,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7157CBE327B76F5500D97402 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 		C02A1B9E2742A8CF00070ACC /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
 		C03555372743E65600D2F0B1 /* FoundsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundsCell.swift; sourceTree = "<group>"; };
 		C03555392743EB0000D2F0B1 /* FoundsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundsDetailView.swift; sourceTree = "<group>"; };
@@ -173,6 +171,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7160B4D827B7AC2200F58214 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C04B117127743E0400B71776 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C02A1B9D2742A89A00070ACC /* DetailedPages */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +225,7 @@
 		C0572D9A274221E400327EA4 /* SDULife */ = {
 			isa = PBXGroup;
 			children = (
+				7160B4D827B7AC2200F58214 /* Resources */,
 				C0C9A28A2757595B0032F42D /* Info.plist */,
 				C0C9A27B2756601C0032F42D /* ViewModels */,
 				C0572DB22742273800327EA4 /* Utilities */,
@@ -277,7 +284,6 @@
 		C0572DB22742273800327EA4 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				C04B117127743E0400B71776 /* Fonts */,
 				C0C9A26A27561F300032F42D /* Managers */,
 				C0572DB32742274500327EA4 /* Layers */,
 			);
@@ -310,7 +316,6 @@
 			children = (
 				C0572DC127423B4200327EA4 /* SearchBar.swift */,
 				C0EA361B27AC66F500C1729A /* CongratsView.swift */,
-				7157CBE327B76F5500D97402 /* PullToRefresh.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -583,7 +588,6 @@
 				C087261A274F9B5F00B1FE93 /* ClubHeadDetailedView.swift in Sources */,
 				C0C9A2872756645A0032F42D /* RemoteImage.swift in Sources */,
 				C04C876827AD377500D4CCC2 /* AppointmentViewModel.swift in Sources */,
-				7157CBE427B76F5500D97402 /* PullToRefresh.swift in Sources */,
 				C0C9A284275661140032F42D /* Color+Ext.swift in Sources */,
 				C04EA8C72747E2A2001CD8C5 /* Founds.swift in Sources */,
 				C0C9A26F275620240032F42D /* APIError.swift in Sources */,

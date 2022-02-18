@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct SDULifeApp: App {
     
+    @State(initialValue: "en") var lang: String
     let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {

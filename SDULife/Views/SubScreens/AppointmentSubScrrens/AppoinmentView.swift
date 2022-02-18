@@ -27,7 +27,7 @@ struct AppoinmentView: View {
                     viewModel.getAppointments()
                 }
             }
-            if viewModel.isLoading {
+            if (viewModel.isLoading && viewModel.appointments.isEmpty) {
                 LoadingView()
             }
         }

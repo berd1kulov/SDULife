@@ -15,6 +15,7 @@ final class AnnouncementViewModel: ObservableObject {
     @Published var announcements: [Announcement] = [Announcement(id: 0, user_id: 0, title: "Add announcement", description: "", likes: 0, status: 0, created_at: "", updated_at: "", images: [])]
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
+    @Published var isLoaded = false
     @Published var isShowingDetail = false
     @Published var selectedAnnouncement: Announcement?
     @Published var searchedText: String = ""
@@ -90,6 +91,7 @@ final class AnnouncementViewModel: ObservableObject {
     
     func addAnnouncementToServer(imageDatas: [UIImage], user_id: String, title: String, description: String){
         self.isLoading = true
+        self.isLoaded = false
             let headers: HTTPHeaders = [
                 .authorization("Bearer "+token!),
                 .accept("application/json")
@@ -98,9 +100,9 @@ final class AnnouncementViewModel: ObservableObject {
                 multipartFormData.append(user_id.data(using: .utf8)!, withName :"user_id")
                 multipartFormData.append(title.data(using: .utf8)!, withName :"title")
                 multipartFormData.append(description.data(using: .utf8)!, withName :"description")
-                for imageData in imageDatas {
-                    multipartFormData.append(imageData.jpegData(compressionQuality: 1)!, withName: "img[]", fileName: "someFile.jpg", mimeType: "image/jpeg")
-                }
+//                for imageData in imageDatas {
+//                    multipartFormData.append(imageData.jpegData(compressionQuality: 50)!, withName: "img[]", fileName: "someFile.jpeg", mimeType: "image/jpeg")
+//                }
                 
             }, to: "http://sdulife.abmco.kz/api/announcement", method: .post, headers: headers)
             .uploadProgress(closure: { (progress) in
@@ -113,6 +115,7 @@ final class AnnouncementViewModel: ObservableObject {
                 switch response.result {
                 case .success:
                     print("Validation Successful)")
+                    self.isLoaded = true
                 case .failure(let error):
                     print(error)
                 }
