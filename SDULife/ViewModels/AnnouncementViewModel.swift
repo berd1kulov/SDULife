@@ -16,6 +16,7 @@ final class AnnouncementViewModel: ObservableObject {
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
     @Published var isLoaded = false
+    @Published var isClosed = false
     @Published var isShowingDetail = false
     @Published var selectedAnnouncement: Announcement?
     @Published var searchedText: String = ""
@@ -68,7 +69,7 @@ final class AnnouncementViewModel: ObservableObject {
                 case .success(let searchedAnnouncement):
                     self.searchedAnnouncements.removeAll()
                     self.searchedAnnouncements.append(contentsOf: searchedAnnouncement)
-                  
+                    
                 case .failure(let error):
                     switch error {
                     case .invalidResponse:
@@ -92,21 +93,24 @@ final class AnnouncementViewModel: ObservableObject {
     func addAnnouncementToServer(imageDatas: [UIImage], user_id: String, title: String, description: String){
         self.isLoading = true
         self.isLoaded = false
-            let headers: HTTPHeaders = [
-                .authorization("Bearer "+token!),
-                .accept("application/json")
-            ]
-            AF.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(user_id.data(using: .utf8)!, withName :"user_id")
-                multipartFormData.append(title.data(using: .utf8)!, withName :"title")
-                multipartFormData.append(description.data(using: .utf8)!, withName :"description")
-//                for imageData in imageDatas {
-//                    multipartFormData.append(imageData.jpegData(compressionQuality: 50)!, withName: "img[]", fileName: "someFile.jpeg", mimeType: "image/jpeg")
-//                }
-                
-            }, to: "http://sdulife.abmco.kz/api/announcement", method: .post, headers: headers)
+        let headers: HTTPHeaders = [
+            .authorization("Bearer "+token!),
+            .accept("application/json")
+        ]
+        AF.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(user_id.data(using: .utf8)!, withName :"user_id")
+            multipartFormData.append(title.data(using: .utf8)!, withName :"title")
+            multipartFormData.append(description.data(using: .utf8)!, withName :"description")
+            
+            for imageData in imageDatas {
+                if(imageData.size.width != 0 && imageData.size.height != 0){
+                    multipartFormData.append(imageData.jpegData(compressionQuality: 0.5)!, withName: "img[]", fileName: "someFile.jpeg", mimeType: "image/jpeg")
+                }
+            }
+            
+            
+        }, to: "https://sdulife.abmco.kz/api/announcement", method: .post, headers: headers)
             .uploadProgress(closure: { (progress) in
-                print("Upload Progress: \(progress.fractionCompleted)")
                 if(progress.fractionCompleted == 1){
                     self.isLoading = false
                 }
@@ -120,5 +124,5 @@ final class AnnouncementViewModel: ObservableObject {
                     print(error)
                 }
             }
-        }
+    }
 }

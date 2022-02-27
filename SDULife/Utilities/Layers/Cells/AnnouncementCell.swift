@@ -14,25 +14,25 @@ struct AnnouncementCell: View {
     var body: some View {
         VStack(alignment: .leading){
             Text(announcement.title)
-                .font(.system(size: 11))
+                .font(Font.custom("Poppins-Regular", size: 11))
                 .textCase(.uppercase)
                 .foregroundColor(Color(red: 69/255, green: 7/255, blue: 73/255))
                 .padding()
             Text(announcement.description)
-                .bold()
-                .font(.system(size: 15))
+                .font(Font.custom("Poppins-SemiBold", size: 15))
                 .textCase(.uppercase)
                 .padding(.init(top: 0, leading: 15, bottom: 15, trailing: 15))
             Spacer()
             Text(announcement.created_at)
-                .font(.system(size: 11))
+                .font(Font.custom("Poppins-Regular", size: 11))
                 .opacity(0.5)
                 .padding()
         }
         .frame(width: size.width/2+4, height: size.width/2, alignment: .leading)
-        .border(Color.gray, width: 0.5)
-        .background(Color.gray.opacity(0.1))
+        .border(Color.gray, width: 0.2)
+//        .background(Color.gray.opacity(0.1))
         .contentShape(Rectangle())
+        .shadow(color: Color.gray, radius: 0.5, x: 0, y: 0)
     }
 }
 
@@ -49,10 +49,11 @@ struct AddAnnouncementCell: View {
         }
         
         .frame(width: size.width/2+4, height: size.width/2)
-        .border(Color.gray, width: 0.5)
+        .border(Color.gray, width: 0.2)
         .foregroundColor(Color.brandPrimary)
-        .background(Color.gray.opacity(0.1))
+//        .background(Color.gray.opacity(0.1))
         .contentShape(Rectangle())
+        .shadow(color: Color.gray, radius: 0.5, x: 0, y: 0)
     }
 }
 //

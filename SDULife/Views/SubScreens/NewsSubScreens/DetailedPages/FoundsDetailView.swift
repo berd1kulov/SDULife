@@ -39,11 +39,10 @@ struct FoundsDetailView: View {
                         }
                         
                         Text(founds.title)
-                            .bold()
-                            .font(.system(size: 24))
+                            .font(Font.custom("Poppins-SemiBold", size: 24))
                             .padding(.init(top: 20, leading: 26, bottom: 10, trailing: 26))
                         Text(founds.description)
-                            .font(.system(size: 15))
+                            .font(Font.custom("Poppins-Regular", size: 15))
                             .padding(.init(top: 0, leading: 26, bottom: 10, trailing: 26))
                         
                     }

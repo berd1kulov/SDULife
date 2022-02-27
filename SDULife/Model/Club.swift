@@ -23,6 +23,7 @@ struct Club: Codable, Identifiable, Hashable {
     var head_name: String
     var is_followed: Bool
     var is_member: Bool
+    var is_reqeuseted: Bool
 }
 
 struct ClubImage: Codable, Hashable {
@@ -59,7 +60,7 @@ struct ClubNewsMeta: Decodable, Hashable {
 
 
 struct MockData{
-    static let sampleClub = Club(id: 001, name: "Vision Club",description: "Some desc.", head_id: 1, chat: "Ladies club",status: 1,created_at: "",updated_at: "", images: [], posts: 1, members: 12, followers: 230, head_name: "Alama", is_followed: false, is_member: false)
+    static let sampleClub = Club(id: 001, name: "Vision Club",description: "Some desc.", head_id: 1, chat: "Ladies club",status: 1,created_at: "",updated_at: "", images: [], posts: 1, members: 12, followers: 230, head_name: "Alama", is_followed: false, is_member: false, is_reqeuseted: false)
     
     static let imageBase = "https://sdulife.abmco.kz"
     

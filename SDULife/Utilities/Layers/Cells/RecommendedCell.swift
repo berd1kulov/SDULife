@@ -9,41 +9,54 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct RecommendedCell: View {
-    
+
     var recommendation: Recommendation = Recommendation(id: 1, title: "", description: "", image_id: 1, created_at: "", updated_at: "", videos: [], image: [])
     var cgSize: CGSize
     var body: some View {
         VStack(alignment: .leading){
             WebImage(url: URL(string:recommendation.image.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  (MockData.imageBase + recommendation.image[0].path)))
                 .resizable()
-                .frame(width: cgSize.width, height: cgSize.height, alignment: .center)
                 .scaledToFill()
+                .frame(width: cgSize.width, height: cgSize.height, alignment: .center)
+                
+                .shadow(color: Color.gray, radius: 1, x: 0, y: 0)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
             Text(recommendation.title)
                 .font(Font.custom("Poppins-Regular", size: 12))
         }
+        
     }
 }
 
 struct RecommendationVideoCell: View {
     
+    let screenSize = UIScreen.main.bounds.size
     var recommendationUrl: String = ""
     var recommendationTitle: String = ""
     var recommendationTime: String = ""
     var body: some View {
         HStack{
-            WebImage(url: URL(string: recommendationUrl.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  recommendationUrl))
+            WebImage(url: URL(string: !recommendationUrl.isEmpty ? "https://cdn.icon-icons.com/icons2/535/PNG/512/Youtube-Icon_icon-icons.com_52898.png" :  recommendationUrl))
                 .resizable()
-                .frame(width: 85, height: 85, alignment: .center)
                 .scaledToFill()
+                .frame(width: 85, height: 85, alignment: .center)
+                .clipShape(Rectangle())
+                .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 20))
+            
             VStack(alignment:.leading){
                 Text(recommendationTitle)
                 Spacer()
                 Text(recommendationTime)
-                    .font(.system(size: 13))
+                    .font(Font.custom("Poppins-Regular", size: 13))
                     .opacity(0.5)
+                    .lineLimit(nil)
             }
+            Spacer()
         }
+        .background(Color.white)
         .frame(height: 85)
+        .padding(.init(top: 0, leading: 15, bottom: 0, trailing: 15))
+        
     }
 }
 
@@ -58,4 +71,3 @@ struct RecommendationVideoCell_Previews: PreviewProvider {
         RecommendationVideoCell()
     }
 }
-

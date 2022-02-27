@@ -10,6 +10,9 @@ import SDWebImageSwiftUI
 
 struct ClubDetailedView: View {
     
+    let screenSize = UIScreen.main.bounds.size
+    @State var joinLeaveButtonTitle = ""
+    @State var followUnfollowButtonTitle = ""
     @StateObject var viewModel = ClubListViewModel()
     @State var club: Club = MockData.sampleClub
     let userID = UserDefaults.standard.string(forKey: "userID")
@@ -23,16 +26,16 @@ struct ClubDetailedView: View {
                     .cornerRadius(30)
                     .overlay(
                         RoundedRectangle(cornerRadius: 30)
-                            .stroke(Color(red: 69/255, green: 7/255, blue: 73/255), lineWidth: 2)
+                            .stroke(Color.brandPrimary, lineWidth: 2)
                     )
                     .padding()
                 
                 Text(club.name)
                     .font(Font.custom("Poppins-SemiBold", size: 17))
                 Text(club.description)
-                    .font(Font.custom("Poppins-Light", size: 13))
+                    .font(Font.custom("Poppins-Light", size: 11))
                     .opacity(0.7)
-                    .padding(.init(top: 10, leading: 0, bottom: 15, trailing: 0))
+                    .padding(.init(top: 10, leading: 15, bottom: 15, trailing: 15))
                 HStack{
                     Text("Head: \(club.head_name)")
                         .font(Font.custom("Poppins-Regular", size: 13))
@@ -45,12 +48,10 @@ struct ClubDetailedView: View {
                         .font(Font.custom("Poppins-Regular", size: 13))
                     Link("\(club.chat)", destination: URL(string: "\(club.chat)")!)
                         .font(Font.custom("Poppins-SemiBold", size: 13))
-//                    Text("\(club.chat)")
-//                        .font(Font.custom("Poppins-SemiBold", size: 13))
                 }.opacity(0.7)
                 
                 Divider()
-                HStack(spacing: 57){
+                HStack{
                     VStack{
                         Text("\(club.posts)")
                             .font(Font.custom("Poppins-SemiBold", size: 17))
@@ -58,6 +59,8 @@ struct ClubDetailedView: View {
                             .font(Font.custom("Poppins-Regular", size: 13))
                             .opacity(0.7)
                     }
+                    .frame( width: screenSize.width/3)
+        
                     VStack{
                         Text("\(club.members)")
                             .font(Font.custom("Poppins-SemiBold", size: 17))
@@ -65,6 +68,7 @@ struct ClubDetailedView: View {
                             .font(Font.custom("Poppins-Regular", size: 13))
                             .opacity(0.7)
                     }
+                    .frame( width: screenSize.width/3)
                     VStack{
                         Text("\(club.followers)")
                             .font(Font.custom("Poppins-SemiBold", size: 17))
@@ -72,51 +76,50 @@ struct ClubDetailedView: View {
                             .font(Font.custom("Poppins-Regular", size: 13))
                             .opacity(0.7)
                     }
+                    .frame( width: screenSize.width/3)
                 }
                 Divider()
                 VStack {
-                    Text(viewModel.joinMessage).font(.largeTitle)
                     if(club.head_id != Int(userID ?? "0")){
                         HStack{
-                            if(!club.is_member){
-                                Button(action: {
+                            Button(action: {
+                                if(joinLeaveButtonTitle == "Join"){
                                     viewModel.selectedClub = club
                                     viewModel.req_type = 1
                                     viewModel.joinLeaveAcceptRequest()
-                                }, label: {
-                                    Text("Join")
-                                        .frame(width: 155, height: 50, alignment: .center)
-                                        .foregroundColor(.white)
-                                        .background(Color(red: 69/255, green: 7/255, blue: 73/255))
-                                })
-                            }else if(club.is_member){
-                                Button(action: {
+                                    joinLeaveButtonTitle = "Leave"
+                                }else if(joinLeaveButtonTitle == "Leave"){
                                     viewModel.selectedClub = club
                                     viewModel.req_type = 2
                                     viewModel.joinLeaveAcceptRequest()
-    
-                                }, label: {
-                                    Text("Leave")
-                                        .frame(width: 155, height: 50, alignment: .center)
-                                        .foregroundColor(.white)
-                                        .background(Color(red: 69/255, green: 7/255, blue: 73/255))
-                                })
-                            }
-                            if(club.is_followed){
-                                Button(action: {}, label: {
-                                    Text("Unfollow")
-                                        .frame(width: 155, height: 50, alignment: .center)
-                                        .foregroundColor(.white)
-                                        .background(Color(red: 69/255, green: 7/255, blue: 73/255))
-                                })
-                            }else{
-                                Button(action: {}, label: {
-                                    Text("Follow")
-                                        .frame(width: 155, height: 50, alignment: .center)
-                                        .foregroundColor(.white)
-                                        .background(Color(red: 69/255, green: 7/255, blue: 73/255))
-                                })
-                            }
+                                    joinLeaveButtonTitle = "Join"
+                                }
+                            }, label: {
+                                Text(joinLeaveButtonTitle)
+                                    .frame(width: (screenSize.width/2) - 40, height: 50, alignment: .center)
+                                    .foregroundColor(.white)
+                                    .background(Color.brandPrimary)
+                                    .cornerRadius(2)
+                            })
+                            
+                            Button(action: {
+                                if(followUnfollowButtonTitle == "Follow"){
+                                    viewModel.followUnfollowToClub(followReq: true, club_id: club.id)
+                                    followUnfollowButtonTitle = "Unfollow"
+                                    club.followers += 1
+                                }else if(followUnfollowButtonTitle == "Unfollow"){
+                                    viewModel.followUnfollowToClub(followReq: false, club_id: club.id)
+                                    followUnfollowButtonTitle = "Follow"
+                                    club.followers -= 1
+                                }
+                                
+                            }, label: {
+                                Text(followUnfollowButtonTitle)
+                                    .frame(width: (screenSize.width/2) - 40, height: 50, alignment: .center)
+                                    .foregroundColor(.white)
+                                    .background(Color.brandPrimary)
+                                    .cornerRadius(2)
+                            })
                         }
                         .padding()
                     }else{
@@ -124,16 +127,22 @@ struct ClubDetailedView: View {
                             ClubRequestsView(club: club)
                         }, label: {
                             Text("Follow Request")
-                                .frame(width: 310, height: 50, alignment: .center)
+                                .frame(width: (screenSize.width) - 70, height: 50, alignment: .center)
                                 .foregroundColor(.white)
-                                .background(Color(red: 69/255, green: 7/255, blue: 73/255))
+                                .background(Color.brandPrimary)
+                                .cornerRadius(2)
                         })
                             .padding()
                     }
                     ForEach(viewModel.clubPosts){post in
-                        ClubNewsCell(clubPost: post)
+                        NavigationLink(destination: {
+                            ClubPostDetailedView(post: post)
+                        }, label: {
+                            ClubNewsCell(clubPost: post)
+                                .padding(.init(top: 0, leading: 25, bottom: 0, trailing: 25))
+                        })
                         Divider()
-
+                        
                     }
                     if(viewModel.currentPage < viewModel.totalPage){
                         ProgressView()
@@ -147,6 +156,13 @@ struct ClubDetailedView: View {
                 
             }
             .onAppear{
+                if(club.is_followed){followUnfollowButtonTitle = "Unfollow"}
+                else{followUnfollowButtonTitle = "Follow"}
+                
+                if(club.is_reqeuseted){joinLeaveButtonTitle = "Leave"}
+                else if(club.is_member){joinLeaveButtonTitle = "Joined"}
+                else{joinLeaveButtonTitle = "Join"}
+                
                 viewModel.selectedClubId = club.id
                 viewModel.getClubPosts()
             }

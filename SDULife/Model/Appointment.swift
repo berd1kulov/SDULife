@@ -20,6 +20,20 @@ struct Appointment: Codable, Identifiable {
     let image: String?
 }
 
+struct AppointmentSchedule: Codable, Identifiable {
+    let id: Int
+    let name: String
+    let type: String
+    let subtitle: String
+    let description: String
+    let image_id: Int?
+    let user_id: Int
+    let created_at: String
+    let updated_at: String
+    let image: String?
+    let schedule: [String]
+}
+
 struct AddAppointment: Codable {
     let user_id: Int
     let appointment_id: Int

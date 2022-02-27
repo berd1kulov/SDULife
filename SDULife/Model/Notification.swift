@@ -7,10 +7,21 @@
 
 import Foundation
 
-struct Notification: Decodable, Hashable{
-    var title: String
-    var description: String
-    var day: String
-    var startTime: String
-    var endTime: String
+struct Notification: Decodable, Hashable, Identifiable{
+    let id: Int
+    let title: String
+    let body: String
+    let created_at: String
+    let updated_at: String
+}
+
+struct NotificationResponse: Decodable, Hashable {
+    let data: [Notification]
+    let meta: NotificationMeta
+}
+
+struct NotificationMeta: Decodable, Hashable {
+    var current_page: Int
+    var per_page: Int
+    var total: Int
 }

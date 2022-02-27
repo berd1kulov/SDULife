@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CongratsView: View {
     
+    @Binding var sheetActive: Bool
+    @Binding var isClosed: Bool
     let screenSize = UIScreen.main.bounds.size
     var body: some View {
         VStack{
@@ -21,7 +23,8 @@ struct CongratsView: View {
                 .opacity(0.5)
             Spacer()
             Button(action: {
-                
+                isClosed = true
+                sheetActive = false
             }, label: {
                 Text("Back to menu")
                     .frame(width: screenSize.width-50, height: 50)
@@ -33,8 +36,8 @@ struct CongratsView: View {
     }
 }
 
-struct CongratsView_Previews: PreviewProvider {
-    static var previews: some View {
-        CongratsView()
-    }
-}
+//struct CongratsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CongratsView(sheetActive: .constant(true))
+//    }
+//}

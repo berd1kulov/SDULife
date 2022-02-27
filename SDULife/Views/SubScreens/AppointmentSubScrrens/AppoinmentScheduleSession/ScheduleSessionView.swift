@@ -12,6 +12,8 @@ struct ScheduleSessionView: View {
     
     @State var text: String = ""
     var appointment: Appointment = Appointment(id: 1, name: "", type: "", subtitle: "", description: "", image_id: 1, user_id: 1, created_at: "", updated_at: "", image: "")
+    let screenSize = UIScreen.main.bounds.size
+    @StateObject var viewModel = AppointmentViewModel()
     var body: some View {
         VStack{
             HStack{
@@ -23,7 +25,7 @@ struct ScheduleSessionView: View {
                 VStack(alignment: .leading){
                     Text(appointment.name)
                         .font(Font.custom("Poppins-SemiBold", size: 12))
-                    Text(appointment.subtitle)
+                    Text(appointment.description)
                         .font(Font.custom("Poppins-Regular", size: 12))
                         .opacity(0.5)
                 }
@@ -32,21 +34,28 @@ struct ScheduleSessionView: View {
             Divider()
             ScrollView{
                 VStack{
-                    Link("Link to Chat", destination: URL(string: "https://t.me/berd1kulov")!)
+                    
                 }
             }
             
             Spacer()
             NavigationLink(destination: {
-                ScheduleSessionPage()
+                ScheduleSessionPage(appointmentScheduleTimes: viewModel.appointmentSchedule, appointment: appointment)
             }, label: {
                 Text("Schedule a session")
-                    .frame(width: 325, height: 50, alignment: .center)
-                    .background(Color.brandPrimary)
+                    .frame(width: screenSize.width - 50, height: 50, alignment: .center)
+                    .background(viewModel.appointmentSchedule.isEmpty ? Color.gray : Color.brandPrimary)
                     .foregroundColor(.white)
                     .font(Font.custom("Poppins-Regular", size: 12))
+                    .cornerRadius(2)
             })
+                .disabled(viewModel.appointmentSchedule.isEmpty)
         }.padding()
+            .onAppear{
+                if(viewModel.appointmentSchedule.isEmpty){
+                    viewModel.getAppointmentScheduleFromServer(userId: appointment.id)
+                }
+            }
             
     }
 }

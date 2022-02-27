@@ -32,7 +32,7 @@ struct FoundsPage: View {
                             .padding(.init(top: 10, leading: 15, bottom: 0, trailing: 15))
                     }
                     if(viewModel.searchedText.isEmpty){
-                        ScrollView {
+                        RefreshableScrollView(content: {
                             LazyVGrid(columns: gridItemLayout, spacing: 0) {
                                 ForEach(viewModel.founds) {found in
                                     NavigationLink(destination: {
@@ -50,10 +50,17 @@ struct FoundsPage: View {
                                         }
                                 }
                             }
-                            .onAppear {
-                                viewModel.getFounds()
+                        }, onRefresh: { control in
+                            viewModel.totalPage = 1
+                            viewModel.currentPage = 1
+                            viewModel.lastPageNotLoaded = true
+                            viewModel.founds.removeAll()
+                            viewModel.searchedFounds.removeAll()
+                            viewModel.getFounds()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
+                                control.endRefreshing()
                             }
-                        }
+                        })
                     }else{
                         ScrollView {
                             LazyVGrid(columns: gridItemLayout, spacing: 0) {
@@ -67,6 +74,9 @@ struct FoundsPage: View {
                             }
                         }
                     }
+                }
+                .onAppear {
+                    viewModel.getFounds()
                 }
             }
             if (viewModel.isLoading && viewModel.founds.isEmpty) {

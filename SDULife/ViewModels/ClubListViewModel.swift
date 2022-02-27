@@ -7,12 +7,14 @@
 
 import Foundation
 import SwiftUI
+import Alamofire
 
 final class ClubListViewModel: ObservableObject {
     
-    
+    @Published var searchedText: String = ""
     @Published var clubPosts: [ClubNews] = []
     @Published var clubs: [Club] = []
+    @Published var searchedClubs: [Club] = []
     @Published var joined_clubs: [Club] = []
     @Published var followed_clubs: [Club] = []
     @Published var alertItem: AlertItem?
@@ -23,6 +25,7 @@ final class ClubListViewModel: ObservableObject {
     @Published var joinMessage: String = ""
     @Published var req_type: Int = 1
     @Published var users:[RequestedUser] = []
+    @Published var selected_user_id: Int = 0
     
     
     var lastPageNotLoaded = true
@@ -66,7 +69,7 @@ final class ClubListViewModel: ObservableObject {
     }
     
     func joinLeaveAcceptRequest(){
-        NetworkManager.shared.clubJoinLeaveAcceptRequest(req_type: req_type,token: "Bearer " + (token ?? ""), club_id: selectedClub!.id, user_id: Int(userID!)!){ [self] result in
+        NetworkManager.shared.clubJoinLeaveAcceptRequest(req_type: req_type,token: "Bearer " + (token ?? ""), club_id: selectedClub!.id, user_id: Int(userID!)!, accDeclineUserId: selected_user_id){ [self] result in
             
             DispatchQueue.main.async {
                 switch result {
@@ -101,8 +104,7 @@ final class ClubListViewModel: ObservableObject {
                 switch result {
                 case .success(let users):
                     self.users = users
-                  
-                    
+
                 case .failure(let error):
                     switch error {
                     case .invalidResponse:
@@ -157,4 +159,91 @@ final class ClubListViewModel: ObservableObject {
             }
         }
     }
+    
+    func loadFCM(){
+        let token = UserDefaults.standard.string(forKey: "token")
+        let fcmToken = UserDefaults.standard.string(forKey: "fcmToken")
+        print("LOADTOKEN: \(token ?? "")")
+        print("LOADTOKEN: \(fcmToken ?? "")")
+        let parameters: [String: Any] = [
+            "token" : fcmToken ?? ""
+        ]
+        let headers: HTTPHeaders = [
+            .authorization("Bearer " + (token ?? "")),
+            .accept("application/json")
+        ]
+        AF.request("https://sdulife.abmco.kz/api/savetoken",
+                   method: .post,
+                   parameters: parameters,
+                   headers: headers)
+            .responseDecodable(of: FcmTokenResponse.self){ response in
+                switch response.result {
+                case .success:
+                    guard let responseData = response.value else { return }
+                    print("FCMRESPONSE: \(responseData.success)")
+                case .failure(let error):
+                    print("ERROR: \(error)")
+                }
+            }
+    }
+    
+    func searchClub(){
+        NetworkManager.shared.searchClubsFromServer(token: "Bearer " + (token ?? ""), text: searchedText){ [self] result in
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let searchedClubs):
+                    self.searchedClubs.removeAll()
+                    self.searchedClubs.append(contentsOf: searchedClubs)
+                  
+                case .failure(let error):
+                    switch error {
+                    case .invalidResponse:
+                        alertItem = AlertContext.invalidResponse
+                        
+                    case .invalidURL:
+                        alertItem = AlertContext.invalidURL
+                        
+                    case .invalidData:
+                        alertItem = AlertContext.invalidData
+                        
+                    case .unableToComplete:
+                        alertItem = AlertContext.unableToComplete
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    func followUnfollowToClub(followReq: Bool, club_id: Int){
+        let token = UserDefaults.standard.string(forKey: "token")
+        let followParameters: [String: Any] = [
+            "club_id" : club_id,
+            "user_id" : userID ?? ""
+        ]
+        let unfollowParameters: [String: Any] = [
+            "club_id" : club_id
+        ]
+        let headers: HTTPHeaders = [
+            .authorization("Bearer " + (token ?? "")),
+            .accept("application/json")
+        ]
+        AF.request(followReq ? "https://sdulife.abmco.kz/api/club/follow" : "https://sdulife.abmco.kz/api/club/unfollow",
+                   method: .post,
+                   parameters: followReq ? followParameters : unfollowParameters,
+                   headers: headers)
+            .responseDecodable(of: FollowUnfollowResponse.self){ response in
+                switch response.result {
+                case .success:
+                    guard let responseData = response.value else { return }
+                    print("FOLLOWRESPONSE: \(responseData.message)")
+                case .failure(let error):
+                    print("ERROR: \(error)")
+                }
+            }
+    }
+}
+struct FollowUnfollowResponse: Decodable {
+    let message: String
 }

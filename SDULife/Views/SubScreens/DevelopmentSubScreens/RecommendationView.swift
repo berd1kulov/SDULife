@@ -50,7 +50,7 @@ struct RecommendationView: View {
                                 Divider()
                             }
                         }
-                    }.padding(.init(top: 0, leading: 17, bottom: 15, trailing: 17))
+                    }.padding(.init(top: 0, leading: 15, bottom: 15, trailing: 15))
                     
                     Group{
                         HStack{
@@ -60,7 +60,7 @@ struct RecommendationView: View {
                         }
                         Text(viewModel.selectedRecommendation?.description ?? "")
                             .font(Font.custom("Poppins-Light", size: 12))
-                    }.padding(.init(top: 0, leading: 17, bottom: 15, trailing: 17))
+                    }.padding(.init(top: 0, leading: 15, bottom: 15, trailing: 15))
                 }
                 .onAppear {
                     viewModel.getRecommendations()
@@ -71,6 +71,7 @@ struct RecommendationView: View {
             }
         }
         .navigationBarTitle("Recommendation", displayMode: .inline)
+        .background(Color.white)
     }
 }
 

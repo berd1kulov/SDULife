@@ -6,18 +6,19 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct ProfileView: View {
     
     @Binding var isUserLoggedIn: Bool
-    var user: User
     var labelHeight: CGFloat = 50
-    @State var isNotificationsOn: Bool = true
+    @State var isNotificationsOn: Bool = false
+    @StateObject var viewModel = UserViewModel()
     var body: some View {
         NavigationView{
             ScrollView{
                 VStack{
-                    Image(user.image)
+                    Image("no-image")
                         .resizable()
                         .frame(width: 104, height: 104)
                         .cornerRadius(52)
@@ -35,31 +36,32 @@ struct ProfileView: View {
                                 .frame(width: 124, height: 20, alignment: .leading)
                                 .font(.system(size: 13))
                                 .opacity(0.7)
-                            Text("\(user.name) \(user.surname)")
+                            Text("\(viewModel.user.name)")
                                 .font(.system(size: 16))
                             Spacer()
                         }
                         .frame(height: labelHeight)
                         Divider()
                         
-                        HStack{
-                            Text("Id number")
-                                .frame(width: 124, height: 20, alignment: .leading)
-                                .font(.system(size: 13))
-                                .opacity(0.7)
-                            Text("\(user.id)")
-                                .font(.system(size: 16))
-                            Spacer()
-                        }
-                        .frame(height: labelHeight)
-                        Divider()
+//                        HStack{
+//                            Text("Id number")
+//                                .frame(width: 124, height: 20, alignment: .leading)
+//                                .font(.system(size: 13))
+//                                .opacity(0.7)
+//                            Text("\(viewModel.user.id)")
+//                                .font(.system(size: 16))
+//                            Spacer()
+//                        }
+//                        .frame(height: labelHeight)
+//                        
+//                        Divider()
                         
                         HStack{
                             Text("Speciality")
                                 .frame(width: 124, height: 20, alignment: .leading)
                                 .font(.system(size: 13))
                                 .opacity(0.7)
-                            Text("\(user.speciality)")
+                            Text("\(viewModel.user.speciality)")
                                 .font(.system(size: 16))
                             Spacer()
                         }
@@ -71,7 +73,7 @@ struct ProfileView: View {
                                 .frame(width: 124, height: 20, alignment: .leading)
                                 .font(.system(size: 13))
                                 .opacity(0.7)
-                            Text("\(user.birthday)")
+                            Text("\(viewModel.user.birthdate)")
                                 .font(.system(size: 16))
                             Spacer()
                         }
@@ -88,10 +90,10 @@ struct ProfileView: View {
                             Spacer()
                         }
                         NavigationLink(destination: {
-                            HeadStudentsListView()
+                            StudentProfileView(user: viewModel.user)
                         }, label: {
                             HStack{
-                                Text("List of my students")
+                                Text("My activities")
                                     .frame(height: 20, alignment: .leading)
                                     .font(.system(size: 16))
                                 Spacer()
@@ -112,24 +114,26 @@ struct ProfileView: View {
                                 .opacity(0.5)
                             Spacer()
                         }
-                        HStack{
-                            Text("Phone")
-                                .frame(width: 124, height: 20, alignment: .leading)
-                                .font(.system(size: 13))
-                                .opacity(0.7)
-                            Text("\(user.phone)")
-                                .font(.system(size: 16))
-                            Spacer()
-                        }
-                        .frame(height: labelHeight)
-                        Divider()
+//                        HStack{
+//                            Text("Phone")
+//                                .frame(width: 124, height: 20, alignment: .leading)
+//                                .font(.system(size: 13))
+//                                .opacity(0.7)
+//                            Text("---------------")
+//                                .font(.system(size: 16))
+//                            Spacer()
+//                        }
+//
+//                        .frame(height: labelHeight)
+//
+//                        Divider()
                         
                         HStack{
                             Text("Email")
                                 .frame(width: 124, height: 20, alignment: .leading)
                                 .font(.system(size: 13))
                                 .opacity(0.7)
-                            Text("\(user.email)")
+                            Text("\(viewModel.user.email)")
                                 .font(.system(size: 16))
                             Spacer()
                         }
@@ -158,15 +162,25 @@ struct ProfileView: View {
                             }
                             .accentColor(Color.primary)
                             .frame(height: labelHeight)
-                        })
+                        }).disabled(true)
                         
                         Divider()
                         
                         
-                        Toggle(isOn: $isNotificationsOn) {
-                            Text("Notifications")
-                        }
+                        Button(action: {
+                            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }, label: {
+                            HStack{
+                                Text("Notification")
+                                    .frame(width: 124, height: 20, alignment: .leading)
+                                    .font(.system(size: 16))
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                            }
+                            .accentColor(Color.primary)
                             .frame(height: labelHeight)
+                        })
                         
                         Divider()
                             .padding(.init(top: 0, leading: 0, bottom: 48, trailing: 0))
@@ -191,25 +205,20 @@ struct ProfileView: View {
                             }
                             .accentColor(Color.primary)
                             .frame(height: labelHeight)
-                        })
+                        }).disabled(true)
                         
                         Divider()
-                        
-                        
-                        NavigationLink(destination: {
-                            Button(action: {
-                                withAnimation{
-                                    UserDefaults.standard.removeObject(forKey: "token")
-                                    UserDefaults.standard.removeObject(forKey: "userID")
-                                    isUserLoggedIn = false
-                                }
-                                
-                            }, label: {
-                                Text("Log Out")
-                            })
+   
+                        Button(action: {
+                            withAnimation{
+                                UserDefaults.standard.removeObject(forKey: "token")
+                                UserDefaults.standard.removeObject(forKey: "userID")
+                                isUserLoggedIn = false
+                            }
+                            
                         }, label: {
                             HStack{
-                                Text("Contacts")
+                                Text("Sign out")
                                     .frame(width: 124, height: 20, alignment: .leading)
                                     .font(.system(size: 16))
                                 Spacer()
@@ -218,26 +227,29 @@ struct ProfileView: View {
                             .accentColor(Color.primary)
                             .frame(height: labelHeight)
                         })
-                        
                         Divider()
                     }
-                    
                     Text("VERSION 1.0")
                         .font(.system(size: 10))
                         .opacity(0.5)
                         .padding()
-                    
                 }
                 .padding(17)
                 .navigationBarTitle("Profile", displayMode: .inline)
             }
             
         }
+        .onAppear{
+            
+            if(viewModel.user.id == 0){
+                viewModel.getUserInfoFromServer()
+            }
+        }
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(isUserLoggedIn: .constant(true), user: User(id: 0001, name: "Bakdaulet", surname: "Berdikul", image: "userImage", speciality: "Computer Science", birthday: "10.01.2000", phone: "+7 777 777 77 77", email: "berdikul.bakdaulet@mail.ru"))
+        ProfileView(isUserLoggedIn: .constant(true))
     }
 }

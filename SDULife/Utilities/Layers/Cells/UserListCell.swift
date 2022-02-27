@@ -18,9 +18,9 @@ struct UserListCell: View {
                 .cornerRadius(20)
             VStack(alignment: .leading){
                 Text("\(user.name) \(user.email)")
-                    .font(.system(size: 15))
+                    .font(Font.custom("Poppins-Regular", size: 15))
                 Text("\(user.id)")
-                    .font(.system(size: 11))
+                    .font(Font.custom("Poppins-Regular", size: 11))
                     .opacity(0.5)
             }
         }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>38008631640-1ef6kt7p78a3gk0o7tlemi5fpfitb922.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.38008631640-1ef6kt7p78a3gk0o7tlemi5fpfitb922</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>38008631640-4r8rds748nn6eppeugv17iveq8uog9m2.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC8rA_mMIGx1Z6ziFbjH-FAaezFeg_A4oY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>38008631640</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.abm.SDULife</string>
+	<key>PROJECT_ID</key>
+	<string>sdulife-4499a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sdulife-4499a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:38008631640:ios:84856f5026fefc2d35752d</string>
+</dict>
+</plist>

@@ -66,7 +66,6 @@ struct Login: View {
                         }
                     }
                     
-                    
                     Spacer()
                     
                     Button(action: {
@@ -89,15 +88,19 @@ struct Login: View {
                             .frame(width: geom.size.width-48, height: 56, alignment: .center)
                             .font(Font.custom("Poppins-Regular", size: 16))
                             .foregroundColor(.white)
-                            .background(Color(red: 69/255, green: 7/255, blue: 73/255))
+                            .background(Color.brandPrimary)
+                            .cornerRadius(2)
                     })
+                        .disabled(loginViewModel.isLoading == true)
                         .padding()
                         .fullScreenCover(isPresented: $loginViewModel.isAuthenticated, content: {
                             SDULifeTabView(fullScreenCover: $loginViewModel.isAuthenticated)
                         })
                 }.frame(width: abs(geom.size.width), alignment: .center)
                 if loginViewModel.isLoading {
+                   
                     LoadingView()
+                    
                 }
             }
         }

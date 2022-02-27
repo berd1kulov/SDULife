@@ -8,21 +8,17 @@
 import SwiftUI
 
 struct ScheduleSessionPage: View {
-    @State private var selectedDayIndex = 0
-    @State private var selectedYearIndex = 0
-    @State private var selectedMonthIndex = 0
     
-    @State private var startHours = 00
-    @State private var startMinutes = 00
-    @State private var endHours = 00
-    @State private var endMinutes = 00
+    @State var checkTerms  = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var appointmentScheduleTimes: [String] = []
+    var appointment: Appointment
+    @State private var selectedTimeIndex = 0
     @State var name: String = ""
     @State var surname: String = ""
     @State var problem: String = ""
     let screenSize = UIScreen.main.bounds.size
-    private var days = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
-    private var years = ["2022", "2023", "2024", "2025"]
-    private var months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+    @StateObject var viewModel = AppointmentViewModel()
     var body: some View {
         VStack{
             TextField("Name", text: $name)
@@ -56,22 +52,11 @@ struct ScheduleSessionPage: View {
                 )
                 .padding(.horizontal, 10)
             HStack{
-                Picker("", selection: $selectedDayIndex){
-                    ForEach(0..<days.count){
-                        Text(self.days[$0])
-                    }
-                }
-                .frame(width: (screenSize.width-100)/2, height: 40)
-                .padding(7)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 2)
-                        .stroke(lineWidth: 0.2)
-                )
-                
-                Picker("", selection: $selectedYearIndex){
-                    ForEach(0..<years.count){
-                        Text(self.years[$0])
-                            
+                Text("Schedule Times: ")
+                Spacer()
+                Picker("", selection: $selectedTimeIndex){
+                    ForEach(0..<appointmentScheduleTimes.count){
+                        Text(self.appointmentScheduleTimes[$0])
                     }
                 }
                 .frame(width: (screenSize.width-100)/2, height: 40)
@@ -81,80 +66,44 @@ struct ScheduleSessionPage: View {
                         .stroke(lineWidth: 0.2)
                 )
             }
-            HStack{
-                Picker("", selection: $selectedMonthIndex){
-                    ForEach(0..<months.count){
-                        Text(self.months[$0])
-                            
-                    }
-                }
-                .frame(width: (screenSize.width-100)/2, height: 40)
-                .padding(7)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 2)
-                        .stroke(lineWidth: 0.2)
-                )
-            }
-            HStack{
-                Picker("", selection: $startHours){
-                    ForEach(0..<24, id: \.self) { i in
-                        Text("\(i)").tag(i)
-                    }
-                }
-                .frame(width: (screenSize.width-100)/4, height: 50)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 2)
-                        .stroke(lineWidth: 0.2)
-                )
-                
-                Picker("", selection: $startMinutes){
-                    ForEach(0..<60, id: \.self) { i in
-                        Text("\(i)").tag(i)
-                    }
-                }
-                .frame(width: (screenSize.width-100)/4, height: 50)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 2)
-                        .stroke(lineWidth: 0.2)
-                )
-                Text("-")
-                Picker("", selection: $endHours){
-                    ForEach(0..<24, id: \.self) { i in
-                        Text("\(i)").tag(i)
-                    }
-                }
-                .frame(width: (screenSize.width-100)/4, height: 50)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 2)
-                        .stroke(lineWidth: 0.2)
-                )
-                
-                Picker("", selection: $endMinutes){
-                    ForEach(0..<60, id: \.self) { i in
-                        Text("\(i)").tag(i)
-                    }
-                }
-                .frame(width: (screenSize.width-100)/4, height: 50)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 2)
-                        .stroke(lineWidth: 0.2)
-                )
-            }
+            .padding(.horizontal, 18)
             Spacer()
-            Button(action: {}, label: {
+            HStack{
+                Toggle("I agree with", isOn: $checkTerms)
+                    .toggleStyle(CheckboxToggleStyle(style: .square))
+                    .foregroundColor(Color.brandPrimary)
+                Link(destination: URL(string: "https://drive.google.com/file/d/1FTVE8qlkt2roIbEMjK6-RthGvZgTgzm6/view")!, label: {
+                    Text("terms and conditions")
+                        .underline()
+                })
+            }
+            .font(Font.custom("Poppins-Regular", size: 12))
+            Button(action: {
+                viewModel.postAppointmentScheduleToServer(appointment_id: appointment.id, name: "\(name) \(surname)", date: appointmentScheduleTimes[selectedTimeIndex], description: problem)
+                name = ""
+                surname = ""
+                problem = ""
+            }, label: {
                 Text("Add now")
                     .frame(width: screenSize.width-100, height: 50, alignment: .center)
-                    .background(Color.brandPrimary)
+                    .background((name.isEmpty || surname.isEmpty || problem.isEmpty) ? Color.gray : Color.brandPrimary)
                     .foregroundColor(.white)
                     .font(Font.custom("Poppins-Regular", size: 12))
+                    .cornerRadius(2)
             })
+                .disabled(name.isEmpty || surname.isEmpty || problem.isEmpty || (checkTerms == false))
         }
+        .onChange(of: viewModel.message, perform: { newValue in
+            if newValue == "success"{
+                presentationMode.wrappedValue.dismiss()
+            }
+        })
         .navigationBarTitle("Scedule a session", displayMode: .inline)
     }
 }
 
-struct ScheduleSessionPage_Previews: PreviewProvider {
-    static var previews: some View {
-        ScheduleSessionPage()
-    }
-}
+//struct ScheduleSessionPage_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ScheduleSessionPage(appointmentScheduleTimes: [""])
+//    }
+//}

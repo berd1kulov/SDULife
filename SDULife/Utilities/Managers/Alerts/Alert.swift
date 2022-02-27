@@ -22,7 +22,7 @@ struct AlertContext {
                                             dismissButton: .default(Text("OK")))
     
     static let invalidResponse  = AlertItem(title: Text("Server Error"),
-                                            message: Text("Invalid response from the server. Please try again later or contact support."),
+                                            message: Text("Invalid response from the server. Please login again or contact support."),
                                             dismissButton: .default(Text("OK")))
     
     static let invalidURL       = AlertItem(title: Text("Sever Error"),

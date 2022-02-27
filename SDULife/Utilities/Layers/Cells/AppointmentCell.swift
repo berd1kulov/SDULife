@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 struct AppointmentCell: View {
     
-    var appointment: Appointment = Appointment(id: 1, name: "", type: "", subtitle: "", description: "", image_id: 1, user_id: 1, created_at: "", updated_at: "", image: "")
+    var appointment: Appointment = Appointment(id: 1, name: "", type: "", subtitle: "", description: "", image_id: 1, user_id: 1, created_at: "", updated_at: "", image: "no-image")
     let screenSize = UIScreen.main.bounds.size
     var body: some View {
         HStack{
@@ -29,13 +29,12 @@ struct AppointmentCell: View {
                 }.padding()
                 
                 HStack{
-                    Text(appointment.description)
+                    Text(appointment.subtitle)
                         .font(Font.custom("Poppins-Light", size: 13))
+                        .lineLimit(nil)
                         .opacity(0.5)
-                    
                     Spacer()
-                }.padding()
-                
+                }.padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
                 
             }.frame(width: (screenSize.width/2)-26)
             WebImage(url: URL(string: appointment.image == nil ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" : (MockData.imageBase + appointment.image!)))
@@ -44,13 +43,14 @@ struct AppointmentCell: View {
                 .frame(width: (screenSize.width/2)-26, height: screenSize.height/4)
                 .clipShape(Rectangle())
         }
+        .background(Color.white)
         .frame(height: screenSize.height/4)
         .clipShape(RoundedRectangle(cornerRadius: 2))
         .overlay(
             RoundedRectangle(cornerRadius: 2)
-                .stroke(lineWidth: 0.2)
+                .stroke(lineWidth: 0.01)
+               
         )
-        
         .padding(.init(top: 0, leading: 26, bottom: 0, trailing: 26))
     }
 }

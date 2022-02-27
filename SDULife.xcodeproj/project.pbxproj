@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		7157CBDF27B76A3B00D97402 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 7157CBDE27B76A3B00D97402 /* SwiftUIRefresh */; };
+		C0173D7827C3B1A8007B5D00 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0173D7727C3B1A8007B5D00 /* UserViewModel.swift */; };
 		C02A1B9F2742A8CF00070ACC /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A1B9E2742A8CF00070ACC /* NewsDetailView.swift */; };
 		C03555382743E65600D2F0B1 /* FoundsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03555372743E65600D2F0B1 /* FoundsCell.swift */; };
 		C035553A2743EB0000D2F0B1 /* FoundsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03555392743EB0000D2F0B1 /* FoundsDetailView.swift */; };
 		C04282E9279139DB00782427 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C04282E8279139DB00782427 /* SDWebImageSwiftUI */; };
+		C0487B3A27CB89090035D270 /* LinkPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0487B3927CB89090035D270 /* LinkPreview.swift */; };
 		C04B117B27743E3500B71776 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C04B117227743E3300B71776 /* Poppins-Light.ttf */; };
 		C04B117C27743E3500B71776 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C04B117327743E3300B71776 /* Poppins-ExtraLight.ttf */; };
 		C04B117D27743E3500B71776 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C04B117427743E3400B71776 /* Poppins-Bold.ttf */; };
@@ -27,6 +29,8 @@
 		C04C876A27AD385F00D4CCC2 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04C876927AD385E00D4CCC2 /* Appointment.swift */; };
 		C04EA8C72747E2A2001CD8C5 /* Founds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04EA8C62747E2A2001CD8C5 /* Founds.swift */; };
 		C04EA8C92747EE4B001CD8C5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04EA8C82747EE4A001CD8C5 /* ProfileView.swift */; };
+		C056CEFE27C4DE8A004802E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C056CEFD27C4DE8A004802E8 /* GoogleService-Info.plist */; };
+		C056CF0127C4E08D004802E8 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C056CF0027C4E08D004802E8 /* FirebaseMessaging */; };
 		C0572D9C274221E400327EA4 /* SDULifeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0572D9B274221E400327EA4 /* SDULifeApp.swift */; };
 		C0572D9E274221E400327EA4 /* SDULifeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0572D9D274221E400327EA4 /* SDULifeTabView.swift */; };
 		C0572DA0274221E700327EA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0572D9F274221E700327EA4 /* Assets.xcassets */; };
@@ -43,8 +47,11 @@
 		C0572DC227423B4200327EA4 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0572DC127423B4200327EA4 /* SearchBar.swift */; };
 		C0572DC427423D0900327EA4 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0572DC327423D0900327EA4 /* NewsCell.swift */; };
 		C0572DC627423D9D00327EA4 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0572DC527423D9D00327EA4 /* News.swift */; };
+		C05A056A27C7531B0004E6A3 /* CheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A056927C7531B0004E6A3 /* CheckboxToggleStyle.swift */; };
 		C064F06727B23993009EA3BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C064F06627B23993009EA3BB /* LaunchScreen.storyboard */; };
 		C071A52A27A5399F003570B4 /* ScheduleSessionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C071A52927A5399F003570B4 /* ScheduleSessionPage.swift */; };
+		C0807E1927C56C6200885401 /* RefreshableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0807E1827C56C6200885401 /* RefreshableScrollView.swift */; };
+		C085EB0A27CA4DF3008A09B4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C085EB0927CA4DF3008A09B4 /* Toast.swift */; };
 		C0872609274F7BAA00B1FE93 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0872608274F7BAA00B1FE93 /* Announcement.swift */; };
 		C087260D274F7CB500B1FE93 /* AnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C087260C274F7CB500B1FE93 /* AnnouncementCell.swift */; };
 		C087260F274F826F00B1FE93 /* AnnouncementDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C087260E274F826F00B1FE93 /* AnnouncementDetailView.swift */; };
@@ -52,7 +59,7 @@
 		C0872613274F89DD00B1FE93 /* ClubsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0872612274F89DD00B1FE93 /* ClubsCell.swift */; };
 		C0872616274F903B00B1FE93 /* ClubDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0872615274F903B00B1FE93 /* ClubDetailedView.swift */; };
 		C0872618274F966900B1FE93 /* ClubNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0872617274F966900B1FE93 /* ClubNewsCell.swift */; };
-		C087261A274F9B5F00B1FE93 /* ClubHeadDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0872619274F9B5F00B1FE93 /* ClubHeadDetailedView.swift */; };
+		C087261A274F9B5F00B1FE93 /* ClubPostDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0872619274F9B5F00B1FE93 /* ClubPostDetailedView.swift */; };
 		C087261E274F9C4900B1FE93 /* ClubRequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C087261D274F9C4900B1FE93 /* ClubRequestsView.swift */; };
 		C0872620274F9CF600B1FE93 /* UserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C087261F274F9CF600B1FE93 /* UserListCell.swift */; };
 		C09D20B727737CFC00E82EA7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D20B627737CFC00E82EA7 /* LoginViewModel.swift */; };
@@ -80,12 +87,15 @@
 		C0EA361827AC2A3E00C1729A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C0EA361727AC2A3E00C1729A /* Alamofire */; };
 		C0EA361A27AC36DD00C1729A /* AddAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA361927AC36DD00C1729A /* AddAnnouncementView.swift */; };
 		C0EA361C27AC66F500C1729A /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA361B27AC66F500C1729A /* CongratsView.swift */; };
+		C0FA680D27C54D3900FD2679 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FA680C27C54D3900FD2679 /* NotificationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C0173D7727C3B1A8007B5D00 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		C02A1B9E2742A8CF00070ACC /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
 		C03555372743E65600D2F0B1 /* FoundsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundsCell.swift; sourceTree = "<group>"; };
 		C03555392743EB0000D2F0B1 /* FoundsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundsDetailView.swift; sourceTree = "<group>"; };
+		C0487B3927CB89090035D270 /* LinkPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreview.swift; sourceTree = "<group>"; };
 		C04B117227743E3300B71776 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
 		C04B117327743E3300B71776 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		C04B117427743E3400B71776 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
@@ -101,6 +111,7 @@
 		C04C876927AD385E00D4CCC2 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		C04EA8C62747E2A2001CD8C5 /* Founds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Founds.swift; sourceTree = "<group>"; };
 		C04EA8C82747EE4A001CD8C5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		C056CEFD27C4DE8A004802E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C0572D98274221E400327EA4 /* SDULife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDULife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0572D9B274221E400327EA4 /* SDULifeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDULifeApp.swift; sourceTree = "<group>"; };
 		C0572D9D274221E400327EA4 /* SDULifeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDULifeTabView.swift; sourceTree = "<group>"; };
@@ -118,8 +129,11 @@
 		C0572DC127423B4200327EA4 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C0572DC327423D0900327EA4 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		C0572DC527423D9D00327EA4 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		C05A056927C7531B0004E6A3 /* CheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxToggleStyle.swift; sourceTree = "<group>"; };
 		C064F06627B23993009EA3BB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C071A52927A5399F003570B4 /* ScheduleSessionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSessionPage.swift; sourceTree = "<group>"; };
+		C0807E1827C56C6200885401 /* RefreshableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableScrollView.swift; sourceTree = "<group>"; };
+		C085EB0927CA4DF3008A09B4 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		C0872608274F7BAA00B1FE93 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
 		C087260C274F7CB500B1FE93 /* AnnouncementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCell.swift; sourceTree = "<group>"; };
 		C087260E274F826F00B1FE93 /* AnnouncementDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementDetailView.swift; sourceTree = "<group>"; };
@@ -127,7 +141,7 @@
 		C0872612274F89DD00B1FE93 /* ClubsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsCell.swift; sourceTree = "<group>"; };
 		C0872615274F903B00B1FE93 /* ClubDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailedView.swift; sourceTree = "<group>"; };
 		C0872617274F966900B1FE93 /* ClubNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubNewsCell.swift; sourceTree = "<group>"; };
-		C0872619274F9B5F00B1FE93 /* ClubHeadDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubHeadDetailedView.swift; sourceTree = "<group>"; };
+		C0872619274F9B5F00B1FE93 /* ClubPostDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubPostDetailedView.swift; sourceTree = "<group>"; };
 		C087261D274F9C4900B1FE93 /* ClubRequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubRequestsView.swift; sourceTree = "<group>"; };
 		C087261F274F9CF600B1FE93 /* UserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCell.swift; sourceTree = "<group>"; };
 		C09D20B627737CFC00E82EA7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -155,6 +169,8 @@
 		C0C9A28A2757595B0032F42D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C0EA361927AC36DD00C1729A /* AddAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnnouncementView.swift; sourceTree = "<group>"; };
 		C0EA361B27AC66F500C1729A /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
+		C0FA680B27C509E000FD2679 /* SDULife.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SDULife.entitlements; sourceTree = "<group>"; };
+		C0FA680C27C54D3900FD2679 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C056CF0127C4E08D004802E8 /* FirebaseMessaging in Frameworks */,
 				7157CBDF27B76A3B00D97402 /* SwiftUIRefresh in Frameworks */,
 				C04282E9279139DB00782427 /* SDWebImageSwiftUI in Frameworks */,
 				C0EA361827AC2A3E00C1729A /* Alamofire in Frameworks */,
@@ -225,6 +242,7 @@
 		C0572D9A274221E400327EA4 /* SDULife */ = {
 			isa = PBXGroup;
 			children = (
+				C0FA680B27C509E000FD2679 /* SDULife.entitlements */,
 				7160B4D827B7AC2200F58214 /* Resources */,
 				C0C9A28A2757595B0032F42D /* Info.plist */,
 				C0C9A27B2756601C0032F42D /* ViewModels */,
@@ -240,6 +258,7 @@
 				C0572DB82742297D00327EA4 /* Login.swift */,
 				C09D20B627737CFC00E82EA7 /* LoginViewModel.swift */,
 				C064F06627B23993009EA3BB /* LaunchScreen.storyboard */,
+				C056CEFD27C4DE8A004802E8 /* GoogleService-Info.plist */,
 			);
 			path = SDULife;
 			sourceTree = "<group>";
@@ -316,6 +335,8 @@
 			children = (
 				C0572DC127423B4200327EA4 /* SearchBar.swift */,
 				C0EA361B27AC66F500C1729A /* CongratsView.swift */,
+				C05A056927C7531B0004E6A3 /* CheckboxToggleStyle.swift */,
+				C085EB0927CA4DF3008A09B4 /* Toast.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -341,7 +362,7 @@
 			children = (
 				C087261B274F9C1700B1FE93 /* ClubRequestsView */,
 				C0872615274F903B00B1FE93 /* ClubDetailedView.swift */,
-				C0872619274F9B5F00B1FE93 /* ClubHeadDetailedView.swift */,
+				C0872619274F9B5F00B1FE93 /* ClubPostDetailedView.swift */,
 			);
 			path = ClubDetailedScreens;
 			sourceTree = "<group>";
@@ -425,6 +446,8 @@
 				C0B73AF727A865D3007BD411 /* NewsViewModel.swift */,
 				C04C876527AD04E200D4CCC2 /* RecommendationViewModel.swift */,
 				C04C876727AD377500D4CCC2 /* AppointmentViewModel.swift */,
+				C0173D7727C3B1A8007B5D00 /* UserViewModel.swift */,
+				C0FA680C27C54D3900FD2679 /* NotificationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -433,6 +456,8 @@
 			isa = PBXGroup;
 			children = (
 				C0C9A281275660D80032F42D /* LoadingView.swift */,
+				C0807E1827C56C6200885401 /* RefreshableScrollView.swift */,
+				C0487B3927CB89090035D270 /* LinkPreview.swift */,
 			);
 			path = UIKitComponents;
 			sourceTree = "<group>";
@@ -477,6 +502,7 @@
 				C04282E8279139DB00782427 /* SDWebImageSwiftUI */,
 				C0EA361727AC2A3E00C1729A /* Alamofire */,
 				7157CBDE27B76A3B00D97402 /* SwiftUIRefresh */,
+				C056CF0027C4E08D004802E8 /* FirebaseMessaging */,
 			);
 			productName = SDULife;
 			productReference = C0572D98274221E400327EA4 /* SDULife.app */;
@@ -510,6 +536,7 @@
 				C04282E7279139DB00782427 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				C0EA361627AC2A3E00C1729A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				7157CBDD27B76A3B00D97402 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
+				C056CEFF27C4E08D004802E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = C0572D99274221E400327EA4 /* Products */;
 			projectDirPath = "";
@@ -525,6 +552,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C056CEFE27C4DE8A004802E8 /* GoogleService-Info.plist in Resources */,
 				C04B117C27743E3500B71776 /* Poppins-ExtraLight.ttf in Resources */,
 				C04B117F27743E3500B71776 /* Poppins-Medium.ttf in Resources */,
 				C0572DA3274221E700327EA4 /* Preview Assets.xcassets in Resources */,
@@ -566,6 +594,8 @@
 				C0872616274F903B00B1FE93 /* ClubDetailedView.swift in Sources */,
 				C087260F274F826F00B1FE93 /* AnnouncementDetailView.swift in Sources */,
 				C087261E274F9C4900B1FE93 /* ClubRequestsView.swift in Sources */,
+				C0173D7827C3B1A8007B5D00 /* UserViewModel.swift in Sources */,
+				C05A056A27C7531B0004E6A3 /* CheckboxToggleStyle.swift in Sources */,
 				C0572DC227423B4200327EA4 /* SearchBar.swift in Sources */,
 				C0872609274F7BAA00B1FE93 /* Announcement.swift in Sources */,
 				C0BCF0C927A4321C00DB1940 /* RecommendedCell.swift in Sources */,
@@ -573,25 +603,29 @@
 				C0B7F6A9274FC75000B8418B /* HeadStudentsListView.swift in Sources */,
 				C0B73AF827A865D3007BD411 /* NewsViewModel.swift in Sources */,
 				C0572DB7274228B800327EA4 /* Club.swift in Sources */,
+				C0487B3A27CB89090035D270 /* LinkPreview.swift in Sources */,
 				C0B73AF627A85D68007BD411 /* AnnouncementViewModel.swift in Sources */,
 				C0C9A27927565F510032F42D /* Alert.swift in Sources */,
 				C0872618274F966900B1FE93 /* ClubNewsCell.swift in Sources */,
 				C0C9A26C27561F620032F42D /* NetworkManager.swift in Sources */,
 				C0572DAF274224AE00327EA4 /* NewsView.swift in Sources */,
 				C03555382743E65600D2F0B1 /* FoundsCell.swift in Sources */,
+				C085EB0A27CA4DF3008A09B4 /* Toast.swift in Sources */,
 				C09D20B727737CFC00E82EA7 /* LoginViewModel.swift in Sources */,
 				C04C876627AD04E200D4CCC2 /* RecommendationViewModel.swift in Sources */,
 				C0B7F6A0274FB26100B8418B /* DevelopmentView.swift in Sources */,
 				C0B7F6AB274FC88700B8418B /* StudentProfileView.swift in Sources */,
 				C0C9A282275660D80032F42D /* LoadingView.swift in Sources */,
 				C0572DBE274234E400327EA4 /* AnnouncementPage.swift in Sources */,
-				C087261A274F9B5F00B1FE93 /* ClubHeadDetailedView.swift in Sources */,
+				C087261A274F9B5F00B1FE93 /* ClubPostDetailedView.swift in Sources */,
 				C0C9A2872756645A0032F42D /* RemoteImage.swift in Sources */,
+				C0FA680D27C54D3900FD2679 /* NotificationViewModel.swift in Sources */,
 				C04C876827AD377500D4CCC2 /* AppointmentViewModel.swift in Sources */,
 				C0C9A284275661140032F42D /* Color+Ext.swift in Sources */,
 				C04EA8C72747E2A2001CD8C5 /* Founds.swift in Sources */,
 				C0C9A26F275620240032F42D /* APIError.swift in Sources */,
 				C0EA361A27AC36DD00C1729A /* AddAnnouncementView.swift in Sources */,
+				C0807E1927C56C6200885401 /* RefreshableScrollView.swift in Sources */,
 				C0BCF0CE27A43CB300DB1940 /* AppoinmentView.swift in Sources */,
 				C035553A2743EB0000D2F0B1 /* FoundsDetailView.swift in Sources */,
 				C0B7F6A4274FBF8E00B8418B /* NotificationCell.swift in Sources */,
@@ -730,14 +764,15 @@
 		C0572DAC274221E700327EA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = SDULife/SDULife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SDULife/Preview Content\"";
-				DEVELOPMENT_TEAM = U3F6GCK8HT;
+				DEVELOPMENT_TEAM = 3456T57P5Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SDULife/Info.plist;
@@ -749,13 +784,14 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bbbakdaulet.SDULife;
+				PRODUCT_BUNDLE_IDENTIFIER = com.abm.SDULife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -767,14 +803,15 @@
 		C0572DAD274221E700327EA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = SDULife/SDULife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SDULife/Preview Content\"";
-				DEVELOPMENT_TEAM = U3F6GCK8HT;
+				DEVELOPMENT_TEAM = 3456T57P5Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SDULife/Info.plist;
@@ -786,13 +823,14 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bbbakdaulet.SDULife;
+				PRODUCT_BUNDLE_IDENTIFIER = com.abm.SDULife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -841,6 +879,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		C056CEFF27C4E08D004802E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		C0EA361627AC2A3E00C1729A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -861,6 +907,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C04282E7279139DB00782427 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		C056CF0027C4E08D004802E8 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C056CEFF27C4E08D004802E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		C0EA361727AC2A3E00C1729A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

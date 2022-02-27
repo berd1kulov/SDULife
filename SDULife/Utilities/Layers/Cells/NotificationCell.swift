@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct NotificationCell: View {
     
-    var color: Color = Color(red: 69/255, green: 7/255, blue: 73/255)
-    var notification: Notification = Notification(title: "Hackathon", description: "Some hackathon", day: "10.01.2021", startTime: "17:00", endTime: "17:00")
+    
+    @StateObject var viewModel = NotificationViewModel()
+    var color: Color = Color.brandPrimary
+    var notification: Notification = Notification(id: 0, title: "Hackathon", body: "Some hackathon", created_at: "17:00", updated_at: "17:00")
+    var currentTime = "24/02/2022 10:05"
     var body: some View {
         HStack{
             VStack{
@@ -24,20 +28,22 @@ struct NotificationCell: View {
             }
             VStack(alignment: .leading){
                 Text(notification.title)
-                    .bold()
-                    .font(.system(size: 13))
+                    .font(Font.custom("Poppins-SemiBold", size: 13))
                 Spacer()
                 HStack{
-                    Text(notification.day)
-                    Text("\(notification.startTime) - \(notification.endTime)")
+                    Text(notification.body)
+                    Text("\(notification.created_at)")
                 }
-                .font(.system(size: 13))
+                .font(Font.custom("Poppins-Regular", size: 13))
                 Spacer()
-                Text("2 minutes ago")
-                    .font(.system(size: 8))
+                Text(viewModel.timeInterval)
+                    .font(Font.custom("Poppins-Regular", size: 8))
             }
             Spacer()
         }.frame(height: 80, alignment: .leading)
+            .onAppear{
+                viewModel.dateInterval(startDate: notification.created_at, endDate: currentTime)
+            }
     }
 }
 

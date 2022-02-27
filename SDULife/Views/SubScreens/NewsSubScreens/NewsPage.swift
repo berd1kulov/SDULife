@@ -31,13 +31,14 @@ struct NewsPage: View {
                         .padding(.init(top: 10, leading: 15, bottom: 0, trailing: 15))
                 }
                 if(viewModel.searchedText.isEmpty){
-                    ScrollView{
+                    RefreshableScrollView(content: {
                         ForEach(viewModel.news){ news in
                             NavigationLink(destination: {
                                 NewsDetailView(news: news)
                                 
                             }, label: {
                                 NewsCell(news: news)
+                                    
                             })
                         }
                         if(viewModel.currentPage < viewModel.totalPage){
@@ -48,7 +49,19 @@ struct NewsPage: View {
                                     viewModel.getNews()
                                 }
                         }
-                    }
+                    }, onRefresh: { control in
+                        viewModel.totalPage = 1
+                        viewModel.currentPage = 1
+                        viewModel.lastPageNotLoaded = true
+                        DispatchQueue.main.async {
+                            viewModel.news.removeAll()
+                            viewModel.searchedNews.removeAll()
+                        }
+                        viewModel.getNews()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
+                            control.endRefreshing()
+                        }
+                    })
                 }else{
                     ScrollView{
                         ForEach(viewModel.searchedNews){ news in
@@ -59,6 +72,7 @@ struct NewsPage: View {
                             })
                         }
                     }
+                    
                 }
             }
             .onAppear {
@@ -77,6 +91,7 @@ struct NewsPage: View {
         }
     }
 }
+
 
 struct NewsPage_Previews: PreviewProvider {
     static var previews: some View {

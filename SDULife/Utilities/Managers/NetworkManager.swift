@@ -306,10 +306,10 @@ final class NetworkManager {
                 return
             }
             
-//            guard let token = loginResponse.token else {
-//                completion(.failure(.invalidCredentials))
-//                return
-//            }
+            guard let _ = loginResponse.token else {
+                completion(.failure(.invalidCredentials))
+                return
+            }
             
             completion(.success(loginResponse))
 
@@ -317,7 +317,7 @@ final class NetworkManager {
     }
     
     
-    func clubJoinLeaveAcceptRequest(req_type: Int, token: String, club_id: Int,  user_id: Int, completion: @escaping (Result<String, APIError>) -> Void){
+    func clubJoinLeaveAcceptRequest(req_type: Int, token: String, club_id: Int,  user_id: Int, accDeclineUserId: Int, completion: @escaping (Result<String, APIError>) -> Void){
         var basicURL: String = "https://sdulife.abmco.kz/api/club"
         if(req_type == 1){
             basicURL = "\(basicURL)/join"
@@ -337,10 +337,12 @@ final class NetworkManager {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue(token, forHTTPHeaderField: "Authorization")
-        if(req_type == 1 || req_type == 3 || req_type == 4){
+        if(req_type == 1){
             request.httpBody = try? JSONEncoder().encode(ClubJoinRequestBody(club_id: club_id, user_id: user_id))
         }else if(req_type == 2){
             request.httpBody = try? JSONEncoder().encode(ClubLeaveRequestBody(club_id: club_id))
+        }else if(req_type == 3 || req_type == 4){
+            request.httpBody = try? JSONEncoder().encode(ClubJoinRequestBody(club_id: club_id, user_id: accDeclineUserId))
         }
         
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -348,18 +350,16 @@ final class NetworkManager {
                 completion(.failure(.unableToComplete))
                 return
             }
-//
-//            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-//                completion(.failure(.invalidResponse))
-//                return
-//            }
+
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(.failure(.invalidResponse))
+                return
+            }
             
             guard let data = data else {
                 completion(.failure(.invalidData))
                 return
             }
-            print("DATA: \(data)")
-            
             
             guard let clubJoinResponse = try? JSONDecoder().decode(ClubRequestMessage.self, from: data) else {
                 completion(.failure(.invalidResponse))
@@ -538,6 +538,124 @@ final class NetworkManager {
             }
 
             guard let searchResponse = try? JSONDecoder().decode([Founds].self, from: data) else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+            
+            completion(.success(searchResponse))
+
+        }.resume()
+    }
+    
+    func getUserTranscriptFromServer(token: String, userTranscriptUrl: String, completed: @escaping (Result<UserTranscriptResponse, APIError>) -> Void) {
+        guard let url = URL(string: userTranscriptUrl) else {
+            completed(.failure(.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let decodedResponse = try decoder.decode(UserTranscriptResponse.self, from: data)
+                completed(.success(decodedResponse))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func getNotificationsFromServer(token: String, notificationUrl: String, completed: @escaping (Result<NotificationResponse, APIError>) -> Void) {
+        guard let url = URL(string: notificationUrl) else {
+            completed(.failure(.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let decodedResponse = try decoder.decode(NotificationResponse.self, from: data)
+                completed(.success(decodedResponse))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func searchClubsFromServer(token: String, text: String, completion: @escaping (Result<[Club], APIError>) -> Void){
+        let basicURL: String = "https://sdulife.abmco.kz/api/search/club"
+        guard let url = URL(string: basicURL) else {
+            completion(.failure(.invalidURL))
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        let parameters: [String: Any] = [
+            "text": text
+            ]
+        do{
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: JSONSerialization.WritingOptions())
+        }catch{
+            print("ERROR: OOPS!")
+        }
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completion(.failure(.unableToComplete))
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.invalidData))
+                return
+            }
+
+            guard let searchResponse = try? JSONDecoder().decode([Club].self, from: data) else {
                 completion(.failure(.invalidResponse))
                 return
             }

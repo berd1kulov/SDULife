@@ -22,13 +22,12 @@ struct AnnouncementDetailView: View {
                         
                         HStack{
                             Text(announcement.created_at)
-                                .font(.system(size: 10))
+                                .font(Font.custom("Poppins-Regular", size: 10))
                                 .opacity(0.5)
                             Spacer()
                         }
                         Text(announcement.title)
-                            .font(.system(size: 24))
-                            .bold()
+                            .font(Font.custom("Poppins-SemiBold", size: 24))
                         WebImage(url: URL(string: announcement.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  "https://sdulife.abmco.kz/\(announcement.images[0].path)"))
                             .resizable()
                             .scaledToFill()
@@ -37,7 +36,7 @@ struct AnnouncementDetailView: View {
                             
                         
                         Text(announcement.description)
-                            .font(.system(size: 15))
+                            .font(Font.custom("Poppins-Regular", size: 15))
                             .opacity(0.8)
                         
                         Divider()

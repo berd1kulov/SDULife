@@ -31,7 +31,9 @@ struct AnnouncementPage: View {
                             .padding(.init(top: 10, leading: 15, bottom: 0, trailing: 15))
                     }
                     if(viewModel.searchedText.isEmpty){
-                        ScrollView {
+                        
+                        
+                        RefreshableScrollView(content: {
                             LazyVGrid(columns: gridItemLayout, spacing: 0) {
                                 ForEach(viewModel.announcements, id: \.self) {announcements in
                                     if(announcements.title == "Add announcement"){
@@ -57,11 +59,18 @@ struct AnnouncementPage: View {
                                         }
                                 }
                             }
-                            .onAppear {
-                                viewModel.getAnnouncements()
+                        }, onRefresh: { control in
+                            viewModel.totalPage = 1
+                            viewModel.currentPage = 1
+                            viewModel.lastPageNotLoaded = true
+                            viewModel.announcements.removeAll()
+                            viewModel.announcements.append(Announcement(id: 0, user_id: 0, title: "Add announcement", description: "", likes: 0, status: 0, created_at: "", updated_at: "", images: []))
+                            viewModel.searchedAnnouncements.removeAll()
+                            viewModel.getAnnouncements()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
+                                control.endRefreshing()
                             }
-                            
-                        }
+                        })
                     }else{
                         ScrollView {
                             LazyVGrid(columns: gridItemLayout, spacing: 0) {
@@ -76,9 +85,12 @@ struct AnnouncementPage: View {
                         }
                     }
                 }
+                .onAppear {
+                    viewModel.getAnnouncements()
+                }
                 
             }
-            if (viewModel.isLoading && viewModel.announcements.isEmpty) {
+            if (viewModel.isLoading && viewModel.announcements.count==1) {
                 LoadingView()
             }
         }

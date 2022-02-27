@@ -19,6 +19,8 @@ struct AppoinmentView: View {
                             ScheduleSessionView(appointment: appointment)
                         }, label: {
                             AppointmentCell(appointment: appointment)
+                                .shadow(color: Color.gray, radius: 1, x: 0, y: 0)
+                                
                         })
                         
                     }
@@ -32,6 +34,7 @@ struct AppoinmentView: View {
             }
         }
         .navigationBarTitle("Appointment", displayMode: .inline)
+        .background(Color.white)
     }
 }
 

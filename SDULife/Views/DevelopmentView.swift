@@ -74,6 +74,7 @@ struct DevelopmentView: View {
                             .background(Color(red: 214/255, green: 71/255, blue: 71/255))
                             .foregroundColor(.white)
                     })
+                        .disabled(true)
                 }
             
             .navigationBarTitle("Development", displayMode: .inline)

@@ -15,8 +15,9 @@ struct ClubsCell: View {
         HStack{
             WebImage(url: URL(string: club.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  (MockData.imageBase + club.images[0].path)))
                 .resizable()
-                .frame(width: 90, height: 85, alignment: .center)
                 .scaledToFill()
+                .frame(width: 90, height: 85, alignment: .center)
+                .clipShape(Rectangle())
             
             VStack(alignment: .leading){
                 Text(club.name)
@@ -24,10 +25,10 @@ struct ClubsCell: View {
                 
                 Spacer()
                 
-                Text(club.chat)
+                Text(club.description)
                     .font(Font.custom("Poppins-Regular", size: 11))
                 
-                Text("\(club.members)")
+                Text("\(club.members) members")
                     .font(Font.custom("Poppins-Light", size: 11))
                     .opacity(0.5)
             }
@@ -35,6 +36,7 @@ struct ClubsCell: View {
             Spacer()
         }
         .frame(height: 85)
+        .shadow(color: Color.gray, radius: 0.5, x: 0, y: 0)
     }
 }
 

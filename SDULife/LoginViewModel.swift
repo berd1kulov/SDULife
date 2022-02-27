@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class LoginViewModel: ObservableObject {
     
@@ -16,7 +17,6 @@ class LoginViewModel: ObservableObject {
     @Published var isLoading = false
     
     func login(){
-        
         let defaults = UserDefaults.standard
         isLoading = true
         NetworkManager.shared.login(email: email.lowercased(), password: password) { [self] result in
@@ -27,6 +27,7 @@ class LoginViewModel: ObservableObject {
                     defaults.setValue(loginResponse.token, forKey: "token")
                     defaults.setValue(loginResponse.user?.id, forKey: "userID")
                     print("TOKEN: \(String(describing: loginResponse.token))")
+                    print("USER: \(String(describing: loginResponse.user?.id))")
                     self.isAuthenticated = true
                     
                 case .failure(let error):
