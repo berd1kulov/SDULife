@@ -24,7 +24,7 @@ struct NewsCell: View {
                 }
                 .padding(.init(top: 0, leading: 26, bottom: 0, trailing: 26))
                 Spacer()
-                WebImage(url: URL(string: news.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  news.images[0]))
+                WebImage(url: URL(string: news.images.isEmpty ? DefaultMock.thumbinalImage :  news.images[0]))
                     .resizable()
                     .scaledToFill()
                     .frame(width: screenSize.width/2-52, height: 147, alignment: .center)
@@ -34,7 +34,7 @@ struct NewsCell: View {
             }
             Divider()
         }
-        .shadow(color: Color.gray, radius: 0.5, x: 0, y: 0)
+        .shadow(color: Color.gray, radius: 0.3, x: 0, y: 0)
         .frame( height: 160, alignment: .center)
         .contentShape(Rectangle())
     }

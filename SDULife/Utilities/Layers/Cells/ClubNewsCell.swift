@@ -14,7 +14,7 @@ struct ClubNewsCell: View {
     var body: some View {
         HStack{
             
-            WebImage(url: URL(string: clubPost.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  "https://sdulife.abmco.kz/\(clubPost.images[0].path)"))
+            WebImage(url: URL(string: clubPost.images.isEmpty ? DefaultMock.thumbinalImage :  "https://sdulife.abmco.kz/\(clubPost.images[0].path)"))
                 .resizable()
                 .scaledToFill()
                 .frame(width: 85, height: 85, alignment: .center)
@@ -29,7 +29,7 @@ struct ClubNewsCell: View {
             Spacer()
         }
         .frame(height: 85)
-        .shadow(color: Color.gray, radius: 0.5, x: 0, y: 0)
+        .shadow(color: Color.gray, radius: 0.3, x: 0, y: 0)
     }
 }
 

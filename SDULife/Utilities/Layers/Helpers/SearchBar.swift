@@ -24,7 +24,7 @@ struct SearchBar: View {
             }
             .padding(.horizontal, 23)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 2)
+                    RoundedRectangle(cornerRadius: 3)
                         .stroke(lineWidth: 0.2)
                 )
                 .padding(.horizontal, 10)

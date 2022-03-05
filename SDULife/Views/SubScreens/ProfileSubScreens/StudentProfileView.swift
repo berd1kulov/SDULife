@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PDFKit
 
 struct StudentProfileView: View {
     var user: User = MockUserData.sampleUser
@@ -65,8 +66,18 @@ struct StudentProfileView: View {
                 viewModel.getUserTranscript()
             }
         }
+        .sheet(isPresented: $viewModel.isFileLoaded){
+            PDFKitView(url: URL(fileURLWithPath: viewModel.filePath))
+        }
         .padding(30)
         .navigationBarTitle("Transcript", displayMode: .inline)
+        .navigationBarItems(
+            trailing: Button(action: {
+                viewModel.downdloadTFromServer()
+            }, label: {
+                Image(systemName: "arrow.down.doc")
+            })
+        )
         .alert(item: $viewModel.alertItem) { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UserNotifications
+import SDWebImageSwiftUI
 
 struct ProfileView: View {
     
@@ -15,10 +16,11 @@ struct ProfileView: View {
     @State var isNotificationsOn: Bool = false
     @StateObject var viewModel = UserViewModel()
     var body: some View {
+        
         NavigationView{
             ScrollView{
                 VStack{
-                    Image("no-image")
+                    Image("no_user_image")
                         .resizable()
                         .frame(width: 104, height: 104)
                         .cornerRadius(52)
@@ -26,7 +28,7 @@ struct ProfileView: View {
                     Group{
                         HStack{
                             Text("GENERAL INFORMATION")
-                                .font(.system(size: 12))
+                                .font(Font.custom("Poppins-Regular", size: 12))
                                 .opacity(0.5)
                             Spacer()
                         }
@@ -34,7 +36,7 @@ struct ProfileView: View {
                         HStack{
                             Text("Full Name")
                                 .frame(width: 124, height: 20, alignment: .leading)
-                                .font(.system(size: 13))
+                                .font(Font.custom("Poppins-Regular", size: 13))
                                 .opacity(0.7)
                             Text("\(viewModel.user.name)")
                                 .font(.system(size: 16))
@@ -59,10 +61,10 @@ struct ProfileView: View {
                         HStack{
                             Text("Speciality")
                                 .frame(width: 124, height: 20, alignment: .leading)
-                                .font(.system(size: 13))
+                                .font(Font.custom("Poppins-Regular", size: 13))
                                 .opacity(0.7)
                             Text("\(viewModel.user.speciality)")
-                                .font(.system(size: 16))
+                                .font(Font.custom("Poppins-Regular", size: 16))
                             Spacer()
                         }
                         .frame(height: labelHeight)
@@ -71,10 +73,10 @@ struct ProfileView: View {
                         HStack{
                             Text("Birthday")
                                 .frame(width: 124, height: 20, alignment: .leading)
-                                .font(.system(size: 13))
+                                .font(Font.custom("Poppins-Regular", size: 13))
                                 .opacity(0.7)
                             Text("\(viewModel.user.birthdate)")
-                                .font(.system(size: 16))
+                                .font(Font.custom("Poppins-Regular", size: 16))
                             Spacer()
                         }
                         .frame(height: labelHeight)
@@ -84,8 +86,8 @@ struct ProfileView: View {
                     
                     Group{
                         HStack{
-                            Text("STUDENTS")
-                                .font(.system(size: 12))
+                            Text("MY ACTIVITIES")
+                                .font(Font.custom("Poppins-Regular", size: 12))
                                 .opacity(0.5)
                             Spacer()
                         }
@@ -93,9 +95,9 @@ struct ProfileView: View {
                             StudentProfileView(user: viewModel.user)
                         }, label: {
                             HStack{
-                                Text("My activities")
+                                Text("Transcript")
                                     .frame(height: 20, alignment: .leading)
-                                    .font(.system(size: 16))
+                                    .font(Font.custom("Poppins-Regular", size: 16))
                                 Spacer()
                                 Image(systemName: "chevron.right")
                             }
@@ -110,7 +112,7 @@ struct ProfileView: View {
                     Group{
                         HStack{
                             Text("CONTACTS")
-                                .font(.system(size: 12))
+                                .font(Font.custom("Poppins-Regular", size: 12))
                                 .opacity(0.5)
                             Spacer()
                         }
@@ -131,10 +133,10 @@ struct ProfileView: View {
                         HStack{
                             Text("Email")
                                 .frame(width: 124, height: 20, alignment: .leading)
-                                .font(.system(size: 13))
+                                .font(Font.custom("Poppins-Regular", size: 13))
                                 .opacity(0.7)
                             Text("\(viewModel.user.email)")
-                                .font(.system(size: 16))
+                                .font(Font.custom("Poppins-Regular", size: 16))
                             Spacer()
                         }
                         .frame(height: labelHeight)
@@ -146,7 +148,7 @@ struct ProfileView: View {
                     Group{
                         HStack{
                             Text("ACCOUNT SETTINGS")
-                                .font(.system(size: 12))
+                                .font(Font.custom("Poppins-Regular", size: 12))
                                 .opacity(0.5)
                             Spacer()
                         }
@@ -156,7 +158,7 @@ struct ProfileView: View {
                             HStack{
                                 Text("Language")
                                     .frame(width: 124, height: 20, alignment: .leading)
-                                    .font(.system(size: 16))
+                                    .font(Font.custom("Poppins-Regular", size: 16))
                                 Spacer()
                                 Image(systemName: "chevron.right")
                             }
@@ -174,7 +176,7 @@ struct ProfileView: View {
                             HStack{
                                 Text("Notification")
                                     .frame(width: 124, height: 20, alignment: .leading)
-                                    .font(.system(size: 16))
+                                    .font(Font.custom("Poppins-Regular", size: 16))
                                 Spacer()
                                 Image(systemName: "chevron.right")
                             }
@@ -189,7 +191,7 @@ struct ProfileView: View {
                     Group{
                         HStack{
                             Text("TOOLS")
-                                .font(.system(size: 12))
+                                .font(Font.custom("Poppins-Regular", size: 12))
                                 .opacity(0.5)
                             Spacer()
                         }
@@ -199,7 +201,7 @@ struct ProfileView: View {
                             HStack{
                                 Text("About")
                                     .frame(width: 124, height: 20, alignment: .leading)
-                                    .font(.system(size: 16))
+                                    .font(Font.custom("Poppins-Regular", size: 16))
                                 Spacer()
                                 Image(systemName: "chevron.right")
                             }
@@ -218,9 +220,9 @@ struct ProfileView: View {
                             
                         }, label: {
                             HStack{
-                                Text("Sign out")
+                                Text("Log out")
                                     .frame(width: 124, height: 20, alignment: .leading)
-                                    .font(.system(size: 16))
+                                    .font(Font.custom("Poppins-Regular", size: 16))
                                 Spacer()
                                 Image(systemName: "chevron.right")
                             }
@@ -230,7 +232,7 @@ struct ProfileView: View {
                         Divider()
                     }
                     Text("VERSION 1.0")
-                        .font(.system(size: 10))
+                        .font(Font.custom("Poppins-Regular", size: 10))
                         .opacity(0.5)
                         .padding()
                 }

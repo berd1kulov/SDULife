@@ -21,6 +21,8 @@ struct Login: View {
                 VStack{
                     VStack{
                         Image("logo")
+                            .resizable()
+                            .frame(width: 68, height: 54)
                         Text("Welcome")
                             .font(Font.custom("Poppins-SemiBold", size: 18))
                             .foregroundColor(.brandPrimary)

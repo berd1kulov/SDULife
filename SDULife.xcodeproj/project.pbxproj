@@ -65,6 +65,7 @@
 		C09D20B727737CFC00E82EA7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D20B627737CFC00E82EA7 /* LoginViewModel.swift */; };
 		C09D20B92773A6D000E82EA7 /* FoundsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D20B82773A6D000E82EA7 /* FoundsViewModel.swift */; };
 		C09E5FA72752543B009FADAE /* RecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09E5FA62752543B009FADAE /* RecommendationView.swift */; };
+		C0AA82EF27D2442B00D16722 /* PDFKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AA82EE27D2442B00D16722 /* PDFKitView.swift */; };
 		C0B73AF627A85D68007BD411 /* AnnouncementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B73AF527A85D68007BD411 /* AnnouncementViewModel.swift */; };
 		C0B73AF827A865D3007BD411 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B73AF727A865D3007BD411 /* NewsViewModel.swift */; };
 		C0B7F6A0274FB26100B8418B /* DevelopmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B7F69F274FB26100B8418B /* DevelopmentView.swift */; };
@@ -147,6 +148,7 @@
 		C09D20B627737CFC00E82EA7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C09D20B82773A6D000E82EA7 /* FoundsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundsViewModel.swift; sourceTree = "<group>"; };
 		C09E5FA62752543B009FADAE /* RecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationView.swift; sourceTree = "<group>"; };
+		C0AA82EE27D2442B00D16722 /* PDFKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitView.swift; sourceTree = "<group>"; };
 		C0B73AF527A85D68007BD411 /* AnnouncementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementViewModel.swift; sourceTree = "<group>"; };
 		C0B73AF727A865D3007BD411 /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		C0B7F69F274FB26100B8418B /* DevelopmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentView.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				C0EA361B27AC66F500C1729A /* CongratsView.swift */,
 				C05A056927C7531B0004E6A3 /* CheckboxToggleStyle.swift */,
 				C085EB0927CA4DF3008A09B4 /* Toast.swift */,
+				C0AA82EE27D2442B00D16722 /* PDFKitView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				C0B7F6A6274FBFF000B8418B /* Notification.swift in Sources */,
 				C0BCF0CB27A4395100DB1940 /* AppointmentCell.swift in Sources */,
 				C0572DBC274234CD00327EA4 /* NewsPage.swift in Sources */,
+				C0AA82EF27D2442B00D16722 /* PDFKitView.swift in Sources */,
 				C0872616274F903B00B1FE93 /* ClubDetailedView.swift in Sources */,
 				C087260F274F826F00B1FE93 /* AnnouncementDetailView.swift in Sources */,
 				C087261E274F9C4900B1FE93 /* ClubRequestsView.swift in Sources */,

@@ -17,7 +17,7 @@ struct ScheduleSessionView: View {
     var body: some View {
         VStack{
             HStack{
-                WebImage(url: URL(string:appointment.image == nil ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" : (MockData.imageBase + appointment.image!)))
+                WebImage(url: URL(string:appointment.image == nil ? DefaultMock.thumbinalImage : (MockData.imageBase + appointment.image!)))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 35, height: 35)

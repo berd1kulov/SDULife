@@ -25,82 +25,104 @@ struct ClubsView: View {
                             .submitLabel(.search)
                         
                             .padding(.init(top: 14, leading: 15, bottom: 0, trailing: 15))
-                    } else {
-                        SearchBar(text: $viewModel.searchedText)
-                            .padding(.init(top: 14, leading: 15, bottom: 0, trailing: 15))
-                    }
-                    if(viewModel.searchedText.isEmpty){
-                        List{
-                            HStack{
-                                Text("Univercity Clubs")
-                                    .font(Font.custom("Poppins-Regular", size: 13))
-                                Spacer()
-                            }.padding(.init(top: 15, leading: 0, bottom: 0, trailing: 0))
-                            ForEach(viewModel.clubs){ club in
-                                NavigationLink(destination: {
-                                    ClubDetailedView(club: club)
-                                }, label: {
-                                    ClubsCell(club: club)
-                                        .foregroundColor(Color.brandPrimary)
-                                })
-                                    .padding()
+                        
+                        if(viewModel.searchedText.isEmpty){
+                            List{
+                                
+                                if(!viewModel.joined_clubs.isEmpty){
+                                    HStack{
+                                        Text("Joined Clubs")
+                                            .font(Font.custom("Poppins-Regular", size: 12))
+                                        Spacer()
+                                    }
+                                    .listRowSeparator(.hidden)
+                                    .padding(.init(top: 15, leading: 0, bottom: 0, trailing: 0))
+                                    ForEach(viewModel.joined_clubs){ club in
+                                        NavigationLink(destination: {
+                                            ClubDetailedView(club: club)
+                                        }, label: {
+                                            ClubsCell(club: club)
+                                                .foregroundColor(Color.brandPrimary)
+                                        })
+                                            .listRowSeparator(.hidden)
+                                            .padding()
+                                        
+                                    }
+                                }
+                                
+                                if(!viewModel.followed_clubs.isEmpty){
+                                    HStack{
+                                        Text("Followed Clubs")
+                                            .font(Font.custom("Poppins-Regular", size: 12))
+                                        Spacer()
+                                    }
+                                    .listRowSeparator(.hidden)
+                                    .padding(.init(top: 15, leading: 0, bottom: 0, trailing: 0))
+                                    ForEach(viewModel.followed_clubs){ club in
+                                        NavigationLink(destination: {
+                                            ClubDetailedView(club: club)
+                                        }, label: {
+                                            ClubsCell(club: club)
+                                                .foregroundColor(Color.brandPrimary)
+                                        })
+                                            .listRowSeparator(.hidden)
+                                            .padding()
+                                    }
+                                }
+                                
+                                if(!viewModel.clubs.isEmpty){
+                                    HStack{
+                                        Text("Univercity Clubs")
+                                            .font(Font.custom("Poppins-Regular", size: 12))
+                                        Spacer()
+                                    }
+                                    .listRowSeparator(.hidden)
+                                    .padding(.init(top: 15, leading: 0, bottom: 0, trailing: 0))
+                                    ForEach(viewModel.clubs){ club in
+                                        NavigationLink(destination: {
+                                            ClubDetailedView(club: club)
+                                        }, label: {
+                                            ClubsCell(club: club)
+                                                .foregroundColor(Color.brandPrimary)
+                                        })
+                                            .listRowSeparator(.hidden)
+                                            .padding()
+                                    }
+                                }
                             }
-                            
-                            HStack{
-                                Text("Joined Clubs")
-                                    .font(Font.custom("Poppins-Regular", size: 13))
-                                Spacer()
-                            }.padding(.init(top: 15, leading: 0, bottom: 0, trailing: 0))
-                            ForEach(viewModel.joined_clubs){ club in
-                                NavigationLink(destination: {
-                                    ClubDetailedView(club: club)
-                                }, label: {
-                                    ClubsCell(club: club)
-                                        .foregroundColor(Color.brandPrimary)
-                                })
-                                    .padding()
-                            }
-                            
-                            HStack{
-                                Text("Followed Clubs")
-                                    .font(Font.custom("Poppins-Regular", size: 13))
-                                Spacer()
-                            }.padding(.init(top: 15, leading: 0, bottom: 0, trailing: 0))
-                            ForEach(viewModel.followed_clubs){ club in
-                                NavigationLink(destination: {
-                                    ClubDetailedView(club: club)
-                                }, label: {
-                                    ClubsCell(club: club)
-                                        .foregroundColor(Color.brandPrimary)
-                                })
-                                    .padding()
-                            }
-                            
-                        }.listStyle(.plain)
+                            .listStyle(.plain)
                             .pullToRefresh(isShowing: $isShowing) {
                                 viewModel.getClubs()
                                 isShowing = false
                             }
+                        }else{
+                            List{
+                                HStack{
+                                    Text("Searched Clubs")
+                                        .font(Font.custom("Poppins-Regular", size: 12))
+                                    Spacer()
+                                }
+                                .listRowSeparator(.hidden)
+                                .padding(.init(top: 15, leading: 0, bottom: 0, trailing: 0))
+                                ForEach(viewModel.searchedClubs){ club in
+                                    NavigationLink(destination: {
+                                        ClubDetailedView(club: club)
+                                    }, label: {
+                                        ClubsCell(club: club)
+                                            .foregroundColor(Color.brandPrimary)
+                                    })
+                                        .listRowSeparator(.hidden)
+                                        .padding()
+                                }
+                                
+                            }.listStyle(.plain)
+                        }
                     }else{
-                        List{
-                            HStack{
-                                Text("Searched Clubs")
-                                    .font(Font.custom("Poppins-Regular", size: 13))
-                                Spacer()
-                            }.padding(.init(top: 15, leading: 0, bottom: 0, trailing: 0))
-                            ForEach(viewModel.searchedClubs){ club in
-                                NavigationLink(destination: {
-                                    ClubDetailedView(club: club)
-                                }, label: {
-                                    ClubsCell(club: club)
-                                        .foregroundColor(Color.brandPrimary)
-                                })
-                                    .padding()
-                            }
-                        }.listStyle(.plain)
+                        Text("Soon...")
                     }
                 }
                 .navigationBarTitle("University Clubs", displayMode: .inline)
+                
             }
             .onAppear {
                 viewModel.getClubs()

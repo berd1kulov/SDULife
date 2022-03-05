@@ -51,7 +51,7 @@ struct ClubPostDetailedView: View {
                     }
                 }
                 .padding(.init(top: 0, leading: 17, bottom: 0, trailing: 17))
-                .navigationBarTitle("News", displayMode: .inline)
+                .navigationBarTitle("Post", displayMode: .inline)
             }
         }
     }

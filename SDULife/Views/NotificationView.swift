@@ -11,6 +11,8 @@ struct NotificationView: View {
     
     @StateObject var viewModel = NotificationViewModel()
     let currentDate = "\(Date().formatDate())".replacingOccurrences(of: ".", with: "/").replacingOccurrences(of: ",", with: "")
+    @State var todayIsVisible: Bool = true
+    @State var earlierIsVisible: Bool = true
     var body: some View {
         NavigationView{
             ZStack{
@@ -19,12 +21,17 @@ struct NotificationView: View {
                         ForEach(viewModel.notifications) {notification in
                             if("\(Date().formatDate())".replacingOccurrences(of: ".", with: "/").replacingOccurrences(of: ",", with: "").split(separator: " ")[0] == notification.created_at.split(separator: " ")[0]){
                                 
-                                Text("Today")
-                                    .font(.system(size: 13))
-                                    .opacity(0.5)
+//                                Text("Today")
+//                                    .font(.system(size: 13))
+//                                    .opacity(0.5)
+                                    
+                                
                                 NotificationCell(notification: notification, currentTime: currentDate)
                                 Divider()
                             }else{
+//                                Text("Earlier")
+//                                    .font(.system(size: 13))
+//                                    .opacity(0.5)
                                 NotificationCell(color: Color.gray, notification: notification, currentTime: currentDate)
                                 Divider()
                             }
@@ -61,6 +68,7 @@ struct NotificationView: View {
                 trailing: Button(action: {}, label: {
                     Image("calendar")
                 })
+                    .disabled(true)
             )
         }
         .alert(item: $viewModel.alertItem) { alertItem in

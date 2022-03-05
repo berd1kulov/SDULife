@@ -665,6 +665,35 @@ final class NetworkManager {
         }.resume()
     }
     
+    func downloadPDF(token: String, completion: @escaping(_ error: Error?) -> Void) {
+        
+        let destination: DownloadRequest.Destination = { _ , _ in
+            
+            let documentURLs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            
+            let fileURL = documentURLs.appendingPathComponent("TranscriptFile\(Int.random(in: 1..<10000)).pdf")
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+                let headers: HTTPHeaders = [
+                        .authorization(token),
+                        .accept("application/pdf")
+                    ]
+        
+        AF.download(URL(string: "https://sdulife.abmco.kz/api/user/6/transcript/file")!, method: .get, headers: headers, to: destination).downloadProgress(closure: { (progress) in
+            
+        }).validate()
+            .response {response in
+                
+                if response.error == nil {
+                    debugPrint(response)
+                    completion(nil)
+                }
+                else {
+                    completion(response.error)
+                }
+            }
+    }
+    
     func downloadImage(fromURLString urlString: String, completed: @escaping (UIImage?) -> Void ) {
         
         let cacheKey = NSString(string: urlString)

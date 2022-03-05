@@ -14,7 +14,7 @@ struct RecommendedCell: View {
     var cgSize: CGSize
     var body: some View {
         VStack(alignment: .leading){
-            WebImage(url: URL(string:recommendation.image.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  (MockData.imageBase + recommendation.image[0].path)))
+            WebImage(url: URL(string:recommendation.image.isEmpty ? DefaultMock.thumbinalImage :  (MockData.imageBase + recommendation.image[0].path)))
                 .resizable()
                 .scaledToFill()
                 .frame(width: cgSize.width, height: cgSize.height, alignment: .center)
@@ -36,7 +36,7 @@ struct RecommendationVideoCell: View {
     var recommendationTime: String = ""
     var body: some View {
         HStack{
-            WebImage(url: URL(string: !recommendationUrl.isEmpty ? "https://cdn.icon-icons.com/icons2/535/PNG/512/Youtube-Icon_icon-icons.com_52898.png" :  recommendationUrl))
+            WebImage(url: URL(string: !recommendationUrl.isEmpty ? DefaultMock.videoPreviewIcon :  recommendationUrl))
                 .resizable()
                 .scaledToFill()
                 .frame(width: 85, height: 85, alignment: .center)
@@ -56,7 +56,6 @@ struct RecommendationVideoCell: View {
         .background(Color.white)
         .frame(height: 85)
         .padding(.init(top: 0, leading: 15, bottom: 0, trailing: 15))
-        
     }
 }
 

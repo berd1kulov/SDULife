@@ -41,3 +41,9 @@ struct SDULifeRemoteImage: View {
             .onAppear { imageLoader.load(fromURLString: urlString) }
     }
 }
+
+class DefaultMock{
+    static let thumbinalImage = "https://play-lh.googleusercontent.com/ntk7z52xfDiMamCfYGzeDKr8wbrjJOYd2j4Ax71M7jlB6x0GzK-UrXM2u5eNaESDGEM"
+    static let videoPreviewIcon = "https://cdn.icon-icons.com/icons2/535/PNG/512/Youtube-Icon_icon-icons.com_52898.png"
+}
+

@@ -12,40 +12,40 @@ struct SDULifeTabView: View {
     
     @Binding var fullScreenCover: Bool
     var body: some View {
-        GeometryReader{ geom in
-            TabView {
-                NewsView()
-                    .tabItem({
-                        Image("news")
-                            .renderingMode(.template)
-                    })
-                
-                ClubsView()
-                    .tabItem({
-                        Image("home")
-                            .renderingMode(.template)
-                    })
-                
-                DevelopmentView(size: geom.size)
-                    .tabItem({
-                        Image("barchart")
-                            .renderingMode(.template)
-                    })
-                
-                NotificationView()
-                    .tabItem({
-                        Image("notifications")
-                            .renderingMode(.template)
-                    })
-                
-                ProfileView(isUserLoggedIn: $fullScreenCover)
-                    .tabItem({
-                        Image("user")
-                            .renderingMode(.template)
-                    })
-            }
-            .accentColor(Color.brandPrimary)
+        
+        TabView {
+            NewsView()
+                .tabItem({
+                    Image("news")
+                        .renderingMode(.template)
+                })
+            
+            ClubsView()
+                .tabItem({
+                    Image("home")
+                        .renderingMode(.template)
+                })
+            
+            DevelopmentView()
+                .tabItem({
+                    Image("barchart")
+                        .renderingMode(.template)
+                })
+            
+            NotificationView()
+                .tabItem({
+                    Image("notifications")
+                        .renderingMode(.template)
+                })
+            
+            ProfileView(isUserLoggedIn: $fullScreenCover)
+                .tabItem({
+                    Image("user")
+                        .renderingMode(.template)
+                })
         }
+        .accentColor(Color.brandPrimary)
+        
     }
     
 }

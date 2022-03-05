@@ -75,8 +75,7 @@ final class ClubListViewModel: ObservableObject {
                 switch result {
                 case .success(let joinMessage):
                     self.joinMessage = joinMessage
-                  
-                    
+          
                 case .failure(let error):
                     switch error {
                     case .invalidResponse:
@@ -93,7 +92,6 @@ final class ClubListViewModel: ObservableObject {
                     }
                 }
             }
-            
         }
     }
     

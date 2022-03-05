@@ -32,7 +32,7 @@ struct AnnouncementCell: View {
         .border(Color.gray, width: 0.2)
 //        .background(Color.gray.opacity(0.1))
         .contentShape(Rectangle())
-        .shadow(color: Color.gray, radius: 0.5, x: 0, y: 0)
+        .shadow(color: Color.gray, radius: 0.3, x: 0, y: 0)
     }
 }
 
@@ -53,7 +53,7 @@ struct AddAnnouncementCell: View {
         .foregroundColor(Color.brandPrimary)
 //        .background(Color.gray.opacity(0.1))
         .contentShape(Rectangle())
-        .shadow(color: Color.gray, radius: 0.5, x: 0, y: 0)
+        .shadow(color: Color.gray, radius: 0.3, x: 0, y: 0)
     }
 }
 //

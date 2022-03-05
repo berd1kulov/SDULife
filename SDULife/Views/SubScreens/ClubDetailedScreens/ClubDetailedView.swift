@@ -35,7 +35,7 @@ struct ClubDetailedView: View {
                 Text(club.description)
                     .font(Font.custom("Poppins-Light", size: 11))
                     .opacity(0.7)
-                    .padding(.init(top: 10, leading: 15, bottom: 15, trailing: 15))
+                    .padding(.init(top: 10, leading: 30, bottom: 15, trailing: 30))
                 HStack{
                     Text("Head: \(club.head_name)")
                         .font(Font.custom("Poppins-Regular", size: 13))
@@ -176,6 +176,7 @@ struct ClubDetailedView: View {
             }
     }
 }
+
 
 struct ClubDetailedView_Previews: PreviewProvider {
     static var previews: some View {

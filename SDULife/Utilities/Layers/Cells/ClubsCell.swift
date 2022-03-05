@@ -13,7 +13,7 @@ struct ClubsCell: View {
     var club: Club = MockData.sampleClub
     var body: some View {
         HStack{
-            WebImage(url: URL(string: club.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  (MockData.imageBase + club.images[0].path)))
+            WebImage(url: URL(string: club.images.isEmpty ? DefaultMock.thumbinalImage :  (MockData.imageBase + club.images[0].path)))
                 .resizable()
                 .scaledToFill()
                 .frame(width: 90, height: 85, alignment: .center)
@@ -36,7 +36,7 @@ struct ClubsCell: View {
             Spacer()
         }
         .frame(height: 85)
-        .shadow(color: Color.gray, radius: 0.5, x: 0, y: 0)
+        .shadow(color: Color.gray, radius: 0.3, x: 0, y: 0)
     }
 }
 

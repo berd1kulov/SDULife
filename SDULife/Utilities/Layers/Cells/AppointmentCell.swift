@@ -37,7 +37,7 @@ struct AppointmentCell: View {
                 }.padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
                 
             }.frame(width: (screenSize.width/2)-26)
-            WebImage(url: URL(string: appointment.image == nil ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" : (MockData.imageBase + appointment.image!)))
+            WebImage(url: URL(string: appointment.image == nil ? DefaultMock.thumbinalImage : (MockData.imageBase + appointment.image!)))
                 .resizable()
                 .scaledToFill()
                 .frame(width: (screenSize.width/2)-26, height: screenSize.height/4)

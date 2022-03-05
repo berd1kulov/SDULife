@@ -37,6 +37,10 @@
           "value" : "dark"
         }
       ],
+      "color" : {
+        "platform" : "ios",
+        "reference" : "labelColor"
+      },
       "idiom" : "universal"
     }
   ],

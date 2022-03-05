@@ -25,17 +25,18 @@ struct AddAnnouncementView: View {
     var body: some View {
         ZStack{
             VStack{
-                TextField("Name", text: $name)
-                    .frame(width: screenSize.width-64, height: 40)
-                    .padding(7)
-                
-                
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 2)
-                            .stroke(lineWidth: 0.2)
-                    )
-                    .padding(.horizontal, 13)
+//                TextField("Name", text: $name)
+//                    .frame(width: screenSize.width-64, height: 40)
+//                    .padding(7)
+//
+//
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 2)
+//                            .stroke(lineWidth: 0.2)
+//                    )
+//                    .padding(.horizontal, 13)
                 TextField("About", text: $title)
+                    .font(Font.custom("Poppins-Regular", size: 13))
                     .frame(width: screenSize.width-64, height: 40)
                     .padding(7)
                 
@@ -45,6 +46,7 @@ struct AddAnnouncementView: View {
                     )
                     .padding(.horizontal, 13)
                 TextField("Description...", text: $description)
+                    .font(Font.custom("Poppins-Regular", size: 13))
                     .frame(width: screenSize.width-64, height: 40)
                     .padding(7)
                 
@@ -57,15 +59,17 @@ struct AddAnnouncementView: View {
                 ZStack{
                     RoundedRectangle(cornerRadius: 2, style: .continuous)
                         .stroke(lineWidth: 0.2)
-                        .frame(width: screenSize.width-50, height: 100)
+                        .frame(width: screenSize.width-50, height: 150)
                     VStack{
                         Image(systemName: "plus.circle")
                             .resizable()
                             .frame(width: 50, height: 50)
-                            .opacity(0.5)
+                            .opacity(0.3)
                         Text("Add photo")
                             .opacity(0.5)
                     }
+                    .font(Font.custom("Poppins-Regular", size: 13))
+                    
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
@@ -83,12 +87,12 @@ struct AddAnnouncementView: View {
                 }, label: {
                     Text("Add now")
                         .frame(width: screenSize.width-50, height: 50)
-                        .background((name.isEmpty || title.isEmpty || description.isEmpty) ? Color.gray : Color.brandPrimary)
+                        .background((title.isEmpty || description.isEmpty) ? Color.gray : Color.brandPrimary)
                         .foregroundColor(.white)
                         .cornerRadius(2)
                         .padding()
                 })
-                    .disabled(name.isEmpty || title.isEmpty || description.isEmpty)
+                    .disabled(title.isEmpty || description.isEmpty)
                 
             }
             .navigationBarTitle("Announcement", displayMode: .inline)

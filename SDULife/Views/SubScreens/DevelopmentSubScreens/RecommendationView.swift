@@ -44,7 +44,7 @@ struct RecommendationView: View {
                                 NavigationLink(destination: {
                                     WebView(request: URLRequest(url: URL(string: video.url)!))
                                 }, label: {
-                                    RecommendationVideoCell(recommendationUrl: video.url, recommendationTitle: video.title, recommendationTime: "27 Jan 2016")
+                                    RecommendationVideoCell(recommendationUrl: video.url, recommendationTitle: video.title, recommendationTime: String(viewModel.selectedRecommendation?.created_at.split(separator: "T")[0] ?? "-- -- ----"))
                                 })
                                 
                                 Divider()

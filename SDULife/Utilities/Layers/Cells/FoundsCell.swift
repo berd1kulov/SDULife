@@ -14,7 +14,7 @@ struct FoundsCell: View {
     var size: CGSize
     var body: some View {
         VStack{
-            WebImage(url: URL(string: found.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  "https://sdulife.abmco.kz/\(found.images[0].path)"))
+            WebImage(url: URL(string: found.images.isEmpty ? DefaultMock.thumbinalImage :  "https://sdulife.abmco.kz/\(found.images[0].path)"))
                 .resizable()
                 .scaledToFill()
                 .frame(width: size.width/2+4, height: 116, alignment: .center)
@@ -38,7 +38,7 @@ struct FoundsCell: View {
         .frame(width: size.width/2+4, height: 232, alignment: .top)
         .border(Color.gray, width: 0.2)
         .contentShape(Rectangle())
-        .shadow(color: Color.gray, radius: 0.5, x: 0, y: 0)
+        .shadow(color: Color.gray, radius: 0.3, x: 0, y: 0)
         
     }
 }
