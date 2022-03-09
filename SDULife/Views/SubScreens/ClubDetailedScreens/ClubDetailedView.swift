@@ -19,7 +19,7 @@ struct ClubDetailedView: View {
     var body: some View {
         ScrollView{
             VStack{
-                WebImage(url: URL(string: club.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  (MockData.imageBase + club.images[0].path)))
+                WebImage(url: URL(string: club.images.isEmpty ? DefaultMock.thumbinalImage :  (MockData.imageBase + club.images[0].path)))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 60, height: 60, alignment: .center)

@@ -62,6 +62,7 @@ final class UserViewModel: ObservableObject {
         AF.request("https://sdulife.abmco.kz/api/user", method: .get, headers: headers)
            
             .responseDecodable(of: UserResponse.self){ response in
+                self.isLoading = false
                 switch response.result {
                 case .success:
                     guard let userData = response.value else { return }

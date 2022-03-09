@@ -29,20 +29,24 @@ struct SearchBar: View {
                 )
                 .padding(.horizontal, 10)
                 .onTapGesture {
-                    self.isEditing = true
+                    withAnimation{
+                        self.isEditing = true
+                    }
                 }
  
             if isEditing {
                 Button(action: {
-                    self.isEditing = false
-                    self.text = ""
+                    withAnimation{
+                        self.isEditing = false
+                        self.text = ""
+                    }
  
                 }) {
                     Text("Cancel")
                 }
                 .padding(.trailing, 10)
                 .transition(.move(edge: .trailing))
-                .animation(.default)
+                
             }
         }
         .padding(.init(top: 0, leading: 0, bottom: 15, trailing: 0))

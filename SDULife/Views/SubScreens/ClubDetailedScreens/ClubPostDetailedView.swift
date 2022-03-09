@@ -24,7 +24,7 @@ struct ClubPostDetailedView: View {
                         }
                         Text(post.title)
                             .font(Font.custom("Poppins-SemiBold", size: 24))
-                        WebImage(url: URL(string: post.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  "https://sdulife.abmco.kz/\(post.images[0].path)"))
+                        WebImage(url: URL(string: post.images.isEmpty ? DefaultMock.thumbinalImage :  "https://sdulife.abmco.kz/\(post.images[0].path)"))
                             .resizable()
                             .scaledToFill()
                             .frame(width: geom.size.width-30, height: 331, alignment: .center)

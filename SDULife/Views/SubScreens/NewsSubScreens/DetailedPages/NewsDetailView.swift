@@ -26,7 +26,7 @@ struct NewsDetailView: View {
                         }
                         Text(news.title)
                             .font(Font.custom("Poppins-SemiBold", size: 24))
-                        WebImage(url: URL(string: news.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  "https://sdulife.abmco.kz/\(news.images[0])"))
+                        WebImage(url: URL(string: news.images.isEmpty ? DefaultMock.thumbinalImage :  MockData.imageBase + "\(news.images[0])"))
                             .resizable()
                             .scaledToFill()
                             .frame(width: geom.size.width-30, height: 331, alignment: .center)

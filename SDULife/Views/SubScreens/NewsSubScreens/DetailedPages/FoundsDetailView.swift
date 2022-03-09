@@ -18,7 +18,7 @@ struct FoundsDetailView: View {
         GeometryReader{ geom in
                 ScrollView{
                     VStack(alignment: .leading){
-                        WebImage(url: URL(string: founds.images.isEmpty ? "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png" :  "https://sdulife.abmco.kz/\(founds.images[choosenImage].path)"))
+                        WebImage(url: URL(string: founds.images.isEmpty ? DefaultMock.thumbinalImage :  "https://sdulife.abmco.kz/\(founds.images[choosenImage].path)"))
                             .resizable()
                             .scaledToFill()
                             .frame(width: geom.size.width, height: 331, alignment: .center)
@@ -27,7 +27,7 @@ struct FoundsDetailView: View {
                         ScrollView(.horizontal){
                             HStack{
                                 ForEach(founds.images, id: \.self){ image in
-                                    WebImage(url: URL(string: "https://sdulife.abmco.kz/\(image.path)"))
+                                    WebImage(url: URL(string: MockData.imageBase + "\(image.path)"))
                                         .resizable()
                                         .frame(width: 71, height: 70, alignment: .center)
                                         .scaledToFit()

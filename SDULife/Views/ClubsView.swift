@@ -72,7 +72,7 @@ struct ClubsView: View {
                                 
                                 if(!viewModel.clubs.isEmpty){
                                     HStack{
-                                        Text("Univercity Clubs")
+                                        Text("University Clubs")
                                             .font(Font.custom("Poppins-Regular", size: 12))
                                         Spacer()
                                     }

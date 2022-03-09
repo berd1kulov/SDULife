@@ -14,7 +14,7 @@ struct StudentProfileView: View {
     var body: some View {
         ScrollView{
             VStack{
-                Image("\(user.imageId ?? "no-image")")
+                Image("no_user_image")
                     .resizable()
                     .frame(width: 80, height: 80, alignment: .center)
                     .cornerRadius(40)
@@ -23,9 +23,9 @@ struct StudentProfileView: View {
                 Text("\(user.name)")
                     .bold()
                     .font(.system(size: 16))
-                Text("\(user.id)")
-                    .font(.system(size: 12))
-                    .opacity(0.5)
+//                Text("\(user.id)")
+//                    .font(.system(size: 12))
+//                    .opacity(0.5)
                 HStack{
                     Text("Personal Information about Student")
                         .font(Font.custom("Poppins-SemiBold", size: 12))
