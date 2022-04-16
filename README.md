@@ -5,6 +5,10 @@ This is a mobile application called SDU Life, designed to facilitate social acti
 ## Installation
 
 Used Swift Package Manager for DI.
+ - Alamofire
+ - SDWebImageSwiftUI
+ - SwiftUIRefresh
+ - Firebase
 
 
 ## License
